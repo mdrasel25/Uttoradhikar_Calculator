@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আল-ফারায়েজ: প্রফেশনাল উত্তরাধিকার ক্যালকুলেটর</title>
+    <title>আল-ফারায়েজ ৩.৫: প্রফেশনাল উত্তরাধিকার ক্যালকুলেটর (২৯টি ওয়ারিশ বিশিষ্ট)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
@@ -28,10 +28,6 @@
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .input-glow:focus {
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
-        }
-        
         .checkbox-card {
             transition: all 0.2s ease;
         }
@@ -43,267 +39,243 @@
             background-color: #064e3b !important;
             border-color: #34d399 !important;
         }
-
-        /* প্রিন্ট অপটিমাইজেশন */
         @media print {
-            body {
-                background: white !important;
-                color: black !important;
-            }
             header, .lg\:col-span-5, #actionRow, #blogPage, footer, .print-hidden, #chartFrame {
                 display: none !important;
             }
-            #calculatorPage {
-                display: block !important;
-            }
+            #calculatorPage { display: block !important; }
             .lg\:col-span-7, #printArea {
                 width: 100% !important;
-                position: absolute;
-                left: 0;
-                top: 0;
-                box-shadow: none !important;
-                border: none !important;
-                padding: 0 !important;
                 background: white !important;
                 color: black !important;
-            }
-            tr {
-                border-bottom: 1px solid #cbd5e1 !important;
-                page-break-inside: avoid;
-            }
-            th {
-                background-color: #f1f5f9 !important;
-                color: black !important;
-            }
-            td, p, span, h3, h4, li {
-                color: black !important;
+                padding: 0 !important;
             }
         }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        .dark ::-webkit-scrollbar-track { background: #1e293b; }
-        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col justify-between antialiased">
 
-    <header class="bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-lg py-3.5 px-4 md:py-5 md:px-6 sticky top-0 z-50 print-hidden">
-        <div class="container mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4">
-            
+    <header class="bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-lg py-3.5 px-4 sticky top-0 z-50 print-hidden">
+        <div class="container mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-3">
             <div class="flex justify-between items-center w-full sm:w-auto">
                 <div>
                     <h1 class="text-xl md:text-2xl font-bold flex items-center gap-2">
                         <i class="fa-solid fa-scale-balanced text-amber-400"></i> আল-ফারায়েজ ৩.৫
                     </h1>
-                    <p class="text-emerald-100 text-xs mt-0.5 font-light hidden sm:block">ব্যক্তিগত নাম উল্লেখ ও মাল্টি-পেজ নেভিগেশন প্ল্যাটফর্ম</p>
+                    <p class="text-emerald-100 text-xs mt-0.5 font-light">ভগ্নাংশ ও ৫-ধাপের শরিয়াহ অডিট ট্রেইল বিশিষ্ট অটো-ক্যালকুলেটর</p>
                 </div>
-                
-                <button onclick="toggleDarkMode()" class="sm:hidden bg-emerald-900/40 hover:bg-emerald-900/60 text-white p-2 rounded-xl border border-emerald-600/50 transition-all flex items-center justify-center">
-                    <i id="themeIconMobile" class="fa-solid fa-sun text-amber-300"></i>
+                <button onclick="toggleDarkMode()" class="sm:hidden bg-emerald-900/40 text-white p-2 rounded-xl">
+                    <i id="themeIconMobile" class="fa-solid fa-moon text-amber-300"></i>
                 </button>
             </div>
-            
             <div class="flex items-center gap-3 w-full sm:w-auto">
-                <div class="flex items-center gap-1 bg-emerald-900/40 p-1 rounded-xl md:rounded-2xl border border-emerald-700/50 w-full sm:w-auto justify-center">
-                    <button id="navCalcBtn" onclick="switchPage('calculator')" class="bg-emerald-600 text-white text-xs md:text-sm font-bold py-1.5 px-4 md:py-2 md:px-5 rounded-lg md:rounded-xl shadow transition-all flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
+                <div class="flex items-center gap-1 bg-emerald-900/40 p-1 rounded-xl border border-emerald-700/50 w-full sm:w-auto justify-center">
+                    <button id="navCalcBtn" onclick="switchPage('calculator')" class="bg-emerald-600 text-white text-xs md:text-sm font-bold py-1.5 px-4 rounded-lg shadow flex items-center gap-1.5">
                         <i class="fa-solid fa-calculator"></i> ক্যালকুলেটর
                     </button>
-                    <button id="navBlogBtn" onclick="switchPage('blog')" class="text-emerald-100 hover:text-white text-xs md:text-sm font-medium py-1.5 px-4 md:py-2 md:px-5 rounded-lg md:rounded-xl transition-all flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
-                        <i class="fa-solid fa-book-open"></i> জ্ঞান ব্লগ
+                    <button id="navBlogBtn" onclick="switchPage('blog')" class="text-emerald-100 hover:text-white text-xs md:text-sm font-medium py-1.5 px-4 rounded-lg flex items-center gap-1.5">
+                        <i class="fa-solid fa-book-open"></i> শরিয়াহ জ্ঞানকোষ (প্রমাণসহ)
                     </button>
                 </div>
-
-                <button onclick="toggleDarkMode()" class="hidden sm:flex bg-emerald-900/50 hover:bg-emerald-900 text-white text-sm font-semibold py-2 px-4 rounded-xl shadow border border-emerald-600 transition-all items-center gap-2">
-                    <i id="themeIcon" class="fa-solid fa-sun text-amber-300"></i> <span id="themeText">ডার্ক মোড</span>
+                <button onclick="toggleDarkMode()" class="hidden sm:flex bg-emerald-900/50 hover:bg-emerald-900 text-white text-sm py-2 px-4 rounded-xl items-center gap-2">
+                    <i id="themeIcon" class="fa-solid fa-moon text-amber-300"></i> <span id="themeText">ডার্ক মোড</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-6 md:py-8 max-w-7xl flex-grow">
-        
-        <div id="calculatorPage" class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 animate-fade-in">
+    <main class="container mx-auto px-4 py-6 max-w-7xl flex-grow">
+        <div id="calculatorPage" class="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-fade-in">
             
             <div class="lg:col-span-5 space-y-6 print-hidden">
                 
-                <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 transition-all">
-                    <h2 class="text-lg font-bold text-emerald-800 dark:text-emerald-400 mb-4 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-3xl shadow border border-slate-100 dark:border-slate-800">
+                    <h2 class="text-md font-bold text-emerald-800 dark:text-emerald-400 mb-4 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
                         <i class="fa-solid fa-user-tag text-emerald-600"></i> ১. তথ্য ও সম্পদের বিবরণ
                     </h2>
                     <div class="space-y-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">মৃত ব্যক্তির নাম</label>
-                            <input type="text" id="deceasedName" placeholder="উদা: মরহুম আলহাজ্ব আব্দুর রহমান" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-medium text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 outline-none transition-all input-glow">
+                            <input type="text" id="deceasedName" placeholder="উদা: মরহুম আলহাজ্ব আব্দুর রহমান" class="w-full px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-medium focus:ring-2 focus:ring-emerald-500 outline-none">
                         </div>
-                        
                         <div class="bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
                             <span class="text-xs font-bold text-emerald-800 dark:text-emerald-400 block"><i class="fa-solid fa-gem"></i> মোট সম্পদের বিবরণ:</span>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">নগদ টাকা (টাকা)</label>
-                                    <input type="text" id="assetCash" placeholder="০" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
+                                    <input type="text" inputmode="numeric" id="assetCash" placeholder="০" class="w-full px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none text-xs">
                                 </div>
                                 <div>
                                     <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">স্বর্ণ (ভরি)</label>
-                                    <input type="text" id="assetGold" placeholder="০" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
+                                    <input type="text" inputmode="decimal" id="assetGold" placeholder="০" class="w-full px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none text-xs">
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">রুপো (ভরি)</label>
-                                    <input type="text" id="assetSilver" placeholder="০" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
+                                    <input type="text" inputmode="decimal" id="assetSilver" placeholder="০" class="w-full px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl outline-none text-xs">
                                 </div>
                                 <div>
                                     <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">জমির পরিমাণ ও একক</label>
-                                    <div class="flex gap-1.5">
-                                        <input type="text" id="assetLand" oninput="updateLiveLandHint()" placeholder="০" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                        <select id="landUnit" onchange="updateLiveLandHint()" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-2 py-2 text-xs font-bold text-slate-700 dark:text-slate-300 outline-none cursor-pointer focus:ring-1 focus:ring-emerald-500">
-                                            <option value="shatansh" selected>শতাংশ</option>
-                                            <option value="acre">একর</option>
+                                    <div class="flex">
+                                        <input type="text" inputmode="decimal" id="assetLand" placeholder="০" class="w-3/5 px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-l-xl text-xs outline-none focus:ring-1 focus:ring-emerald-500">
+                                        <select id="landUnit" class="w-2/5 px-1 py-1.5 bg-slate-100 dark:bg-slate-800 border-y border-r border-slate-200 dark:border-slate-700 rounded-r-xl text-[11px] font-bold outline-none text-emerald-800 dark:text-emerald-400 cursor-pointer">
+                                            <option value="শতাংশ">শতাংশ</option>
+                                            <option value="একর">একর</option>
                                         </select>
                                     </div>
-                                    <span id="liveLandHint" class="text-[10px] text-teal-600 dark:text-teal-400 font-bold mt-1 block h-3"></span>
                                 </div>
                             </div>
                         </div>
-
                         <div>
-                            <span class="text-xs font-bold text-rose-800 dark:text-rose-400 block mb-2"><i class="fa-solid fa-hand-holding-dollar"></i> প্রাথমিক দায়-দেনা (নগদ টাকা থেকে কর্তনযোগ্য):</span>
+                            <span class="text-xs font-bold text-rose-800 dark:text-rose-400 block mb-2"><i class="fa-solid fa-hand-holding-dollar"></i> প্রাথমিক দায়-দেনা (নগদ থেকে কর্তনযোগ্য):</span>
                             <div class="grid grid-cols-3 gap-2">
                                 <div>
-                                    <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">কাফন খরচ</label>
-                                    <input type="text" id="funeralCost" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
+                                    <label class="block text-[11px] text-slate-600 dark:text-slate-400">কাফন খরচ</label>
+                                    <input type="text" inputmode="numeric" id="funeralCost" placeholder="০" class="w-full px-2 py-1.5 bg-slate-50 dark:bg-slate-800 border rounded-xl text-xs outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">মৃতের ঋণ</label>
-                                    <input type="text" id="debtCost" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
+                                    <label class="block text-[11px] text-slate-600 dark:text-slate-400">মৃতের ঋণ</label>
+                                    <input type="text" inputmode="numeric" id="debtCost" placeholder="০" class="w-full px-2 py-1.5 bg-slate-50 dark:bg-slate-800 border rounded-xl text-xs outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">বৈধ অসিয়ত</label>
-                                    <input type="text" id="willCost" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
+                                    <label class="block text-[11px] text-slate-600 dark:text-slate-400">বৈধ অসিয়ত</label>
+                                    <input type="text" inputmode="numeric" id="willCost" placeholder="০" class="w-full px-2 py-1.5 bg-slate-50 dark:bg-slate-800 border rounded-xl text-xs outline-none">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 transition-all">
-                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 dark:border-slate-800 pb-3">
-                        <h2 class="text-lg font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-2">
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-3xl shadow border border-slate-100 dark:border-slate-800">
+                    <div class="flex justify-between items-center mb-4 border-b pb-3">
+                        <h2 class="text-md font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-2">
                             <i class="fa-solid fa-users text-emerald-600"></i> ২. জীবিত উত্তরাধিকারীবৃন্দ
                         </h2>
-                        <button onclick="resetForm()" class="text-xs bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 text-rose-600 dark:text-rose-400 py-1.5 px-3 rounded-xl font-bold transition-all flex items-center gap-1">
-                            <i class="fa-solid fa-rotate-left"></i> রিসেট
-                        </button>
+                        <button onclick="resetForm()" class="text-xs bg-rose-50 dark:bg-rose-950 text-rose-600 py-1 px-2.5 rounded-xl font-bold">রিসেট</button>
                     </div>
-                    
+
+                    <!-- স্ক্রলবার বাদ দিয়ে সহজ ও স্বাভাবিক লেআউট করা হয়েছে -->
                     <div class="space-y-4">
-                        <div>
-                            <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">পিতা ও মাতা</span>
-                            <div class="grid grid-cols-2 gap-3">
-                                <label class="checkbox-card flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer select-none">
-                                    <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">পিতা জীবিত?</span>
-                                    <input type="checkbox" id="fatherAlive" onchange="updateNameFields()" class="w-4 h-4 accent-emerald-600">
+                        
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-3 rounded-2xl space-y-2">
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block border-b pb-1"><i class="fa-solid fa-heart"></i> বৈবাহিক অংশীদার (১-২)</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="checkbox-card flex items-center justify-between p-2 bg-white dark:bg-slate-900 border rounded-xl cursor-pointer">
+                                    <span class="text-xs">স্বামী জীবিত?</span>
+                                    <input type="checkbox" id="husbandAlive" onchange="updateNameFields()" class="w-4 h-4 accent-emerald-600">
                                 </label>
-                                <label class="checkbox-card flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer select-none">
-                                    <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">মাতা জীবিত?</span>
-                                    <input type="checkbox" id="motherAlive" onchange="updateNameFields()" class="w-4 h-4 accent-emerald-600">
+                                <div>
+                                    <input type="text" inputmode="numeric" id="wifeCount" oninput="updateNameFields()" placeholder="জীবিত স্ত্রী সংখ্যা" class="w-full px-3 py-2 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-3 rounded-2xl space-y-2">
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block border-b pb-1"><i class="fa-solid fa-child"></i> সরাসরি বংশধর (৩-৬)</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="text" inputmode="numeric" id="sonCount" oninput="updateNameFields()" placeholder="পুত্র সংখ্যা" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="deadSonCount" oninput="updateNameFields()" placeholder="মৃত পুত্র সংখ্যা" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="daughterCount" oninput="updateNameFields()" placeholder="কন্যা সংখ্যা" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="deadDaughterCount" oninput="updateNameFields()" placeholder="মৃত কন্যা সংখ্যা" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-3 rounded-2xl space-y-2">
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block border-b pb-1"><i class="fa-solid fa-blind"></i> পিতা-মাতা ও দাদা-দাদি (৭-১১)</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="checkbox-card flex items-center justify-between p-2 bg-white dark:bg-slate-900 border rounded-xl cursor-pointer">
+                                    <span class="text-[11px]">পিতা জীবিত?</span>
+                                    <input type="checkbox" id="fatherAlive" onchange="updateNameFields()" class="w-3.5 h-3.5 accent-emerald-600">
+                                </label>
+                                <label class="checkbox-card flex items-center justify-between p-2 bg-white dark:bg-slate-900 border rounded-xl cursor-pointer">
+                                    <span class="text-[11px]">মাতা জীবিত?</span>
+                                    <input type="checkbox" id="motherAlive" onchange="updateNameFields()" class="w-3.5 h-3.5 accent-emerald-600">
+                                </label>
+                                <label class="checkbox-card flex items-center justify-between p-2 bg-white dark:bg-slate-900 border rounded-xl cursor-pointer">
+                                    <span class="text-[11px]">দাদা জীবিত?</span>
+                                    <input type="checkbox" id="grandfatherAlive" onchange="updateNameFields()" class="w-3.5 h-3.5 accent-emerald-600">
+                                </label>
+                                <label class="checkbox-card flex items-center justify-between p-2 bg-white dark:bg-slate-900 border rounded-xl cursor-pointer">
+                                    <span class="text-[11px]">দাদি জীবিত?</span>
+                                    <input type="checkbox" id="grandmotherAlive" onchange="updateNameFields()" class="w-3.5 h-3.5 accent-emerald-600">
                                 </label>
                             </div>
+                            <label class="checkbox-card flex items-center justify-between p-2 bg-white dark:bg-slate-900 border rounded-xl cursor-pointer w-full">
+                                <span class="text-[11px]">নানি জীবিত?</span>
+                                <input type="checkbox" id="nanialive" onchange="updateNameFields()" class="w-3.5 h-3.5 accent-emerald-600">
+                            </label>
                         </div>
 
-                        <div>
-                            <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">স্বামী / ⁠স্ত্রী</span>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">জীবিত স্ত্রী সংখ্যা (০-৪)</label>
-                                    <input type="text" id="wifeCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                </div>
-                                <div class="flex items-end">
-                                    <label class="checkbox-card flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl cursor-pointer select-none w-full h-[42px]">
-                                        <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">স্বামী জীবিত?</span>
-                                        <input type="checkbox" id="husbandAlive" onchange="updateNameFields()" class="w-4 h-4 accent-emerald-600">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">সন্তান ও নাতি-নাতনি</span>
-                            <div class="grid grid-cols-2 gap-3 mb-2">
-                                <div>
-                                    <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">পুত্র সন্তানের সংখ্যা</label>
-                                    <input type="text" id="sonCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">কন্যা সন্তানের সংখ্যা</label>
-                                    <input type="text" id="daughterCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">नाতি (মৃত পুত্রের ছেলে)</label>
-                                    <input type="text" id="grandsonCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">নাতনি (মৃত পুত্রের মেয়ে)</label>
-                                    <input type="text" id="granddaughterCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-3 rounded-2xl space-y-2">
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block border-b pb-1"><i class="fa-solid fa-people-group"></i> ভাই ও বোন সমূহ (১২-১৭)</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="text" inputmode="numeric" id="fullBrotherCount" oninput="updateNameFields()" placeholder="সহোদর ভাই সংখ্যা" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="fullSisterCount" oninput="updateNameFields()" placeholder="সহোদর বোন সংখ্যা" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="stepBrotherCount" oninput="updateNameFields()" placeholder="সৎ ভাই (বৈমাত্রেয়)" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="stepSisterCount" oninput="updateNameFields()" placeholder="সৎ বোন (বৈমাত্রেয়)" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="uterineBrotherCount" oninput="updateNameFields()" placeholder="সৎ ভাই (বৈপিত্রেয়)" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="uterineSisterCount" oninput="updateNameFields()" placeholder="সৎ বোন (বৈপিত্রেয়)" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
                             </div>
                         </div>
 
-                        <div>
-                            <span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">অন্যান্য আত্মীয়</span>
-                            <div class="grid grid-cols-2 gap-3 mb-2">
-                                <div>
-                                    <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">সৎ ভাই (বৈমাত্রেয়)</label>
-                                    <input type="text" id="stepBrotherCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">সৎ বোন (বৈমাত্রেয়)</label>
-                                    <input type="text" id="stepSisterCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">মৃত ভাই/বোনের ছেলে (ভাতিজা)</label>
-                                <input type="text" id="nephewCount" oninput="updateNameFields()" placeholder="০" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white outline-none">
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-3 rounded-2xl space-y-2">
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block border-b pb-1"><i class="fa-solid fa-arrow-down-long"></i> ভাইয়ের পুত্র ও পৌত্রগণ (১৮-২১)</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="text" inputmode="numeric" id="nephewFullCount" oninput="updateNameFields()" placeholder="সহোদর ভাইয়ের পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="nephewStepCount" oninput="updateNameFields()" placeholder="সৎ ভাই(বৈমাত্রেয়)-এর পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="grandNephewFullCount" oninput="updateNameFields()" placeholder="সহোদর ভাইয়ের পুত্রের পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="grandNephewStepCount" oninput="updateNameFields()" placeholder="সৎ ভাই(বৈমাত্রেয়)-এর পুত্রের পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
                             </div>
                         </div>
 
-                        <div id="dynamicNamesContainer" class="hidden space-y-3 p-4 bg-emerald-50/50 dark:bg-slate-800/40 rounded-2xl border border-emerald-100 dark:border-slate-800 transition-all"></div>
+                        <div class="bg-slate-50 dark:bg-slate-800/30 p-3 rounded-2xl space-y-2">
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block border-b pb-1"><i class="fa-solid fa-users-rectangle"></i> চাচা ও চাচার বংশধর (২২-২৯)</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="text" inputmode="numeric" id="uncleFullCount" oninput="updateNameFields()" placeholder="চাচা সংখ্যা" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="uncleStepCount" oninput="updateNameFields()" placeholder="চাচা (বৈমাত্রেয়)" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="cousinFullCount" oninput="updateNameFields()" placeholder="চাচাতো ভাই" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="cousinStepCount" oninput="updateNameFields()" placeholder="চাচাতো ভাই (বৈমাত্রেয়)" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="cousinNephewFullCount" oninput="updateNameFields()" placeholder="চাচাতো ভাইয়ের পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="cousinNephewStepCount" oninput="updateNameFields()" placeholder="চাচাতো ভাই (বৈমাত্রেয়) এর পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="cousinGrandNephewFullCount" oninput="updateNameFields()" placeholder="চাচাতো ভাইয়ের পুত্রের পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                                <input type="text" inputmode="numeric" id="cousinGrandNephewStepCount" oninput="updateNameFields()" placeholder="চাচাতো ভাই (বৈমাত্রেয়) এর পুত্রের পুত্র" class="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border rounded-xl outline-none">
+                            </div>
+                        </div>
 
-                        <button onclick="calculateFaraid()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-md transition-all transform active:scale-95 flex items-center justify-center gap-2 mt-2">
-                            <i class="fa-solid fa-calculator"></i> শরিয়াহ মোতাবেক বণ্টন করুন
-                        </button>
                     </div>
+
+                    <div id="dynamicNamesContainer" class="hidden space-y-3 p-4 bg-emerald-50/50 dark:bg-slate-800/40 rounded-2xl border mt-3"></div>
+
+                    <button onclick="calculateFaraid()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold py-3.5 px-6 rounded-2xl shadow-md mt-4 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> শরিয়াহ মোতাবেক বণ্টন করুন
+                    </button>
                 </div>
             </div>
 
             <div class="lg:col-span-7 space-y-6 flex flex-col justify-between">
-                
-                <div id="printArea" class="bg-white dark:bg-slate-900 p-5 md:p-6 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 flex-grow">
-                    <h2 class="text-xl font-bold text-emerald-800 dark:text-emerald-400 mb-4 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3 print-hidden">
+                <div id="printArea" class="bg-white dark:bg-slate-900 p-5 rounded-3xl shadow border flex-grow">
+                    <h2 class="text-lg font-bold text-emerald-800 dark:text-emerald-400 mb-4 flex items-center gap-2 border-b pb-3 print-hidden">
                         <i class="fa-solid fa-chart-pie text-emerald-600"></i> ৩. বণ্টননামা ও আইনি হিসাবের বিবরণী
                     </h2>
                     
-                    <div id="chartFrame" class="mb-6 max-w-[240px] mx-auto animate-fade-in print-hidden hidden">
+                    <div id="chartFrame" class="mb-6 max-w-[200px] mx-auto print-hidden hidden">
                         <canvas id="faraidDoughnutChart"></canvas>
                     </div>
 
                     <div id="faraidOutputContainer">
-                        <div class="text-center py-20 md:py-24 text-slate-400 dark:text-slate-600 space-y-3 print-hidden">
+                        <div class="text-center py-20 text-slate-400 dark:text-slate-600 space-y-3 print-hidden">
                             <i class="fa-solid fa-file-invoice text-5xl text-slate-200 dark:text-slate-800"></i>
-                            <p class="text-sm font-medium">প্রয়োজনীয় ইনপুট সম্পন্ন করে হিসাব বাটনে ক্লিক করুন। চূড়ান্ত ফারায়েজ রিপোর্ট এখানে রেন্ডার হবে।</p>
+                            <p class="text-sm font-medium">প্রয়োজনীয় ওয়ারিশ নির্বাচন করে হিসাব বাটনে ক্লিক করুন। চূড়ান্ত ফারায়েজ রিপোর্ট এখানে রেন্ডার হবে।</p>
                         </div>
                     </div>
                 </div>
 
-                <div id="actionRow" class="hidden grid grid-cols-2 gap-4 animate-fade-in print-hidden">
-                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 px-4 rounded-xl transition shadow flex items-center justify-center gap-2 text-sm">
+                <div id="actionRow" class="hidden grid grid-cols-2 gap-4 print-hidden">
+                    <button onclick="window.print()" class="bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl shadow flex items-center justify-center gap-2 text-sm">
                         <i class="fa-solid fa-print"></i> প্রিন্ট বা PDF সংরক্ষণ
                     </button>
-                    <button onclick="copyReportText()" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl transition shadow flex items-center justify-center gap-2 text-sm">
+                    <button onclick="copyReportText()" class="bg-teal-600 text-white font-semibold py-3 px-4 rounded-xl shadow flex items-center justify-center gap-2 text-sm">
                         <i class="fa-solid fa-copy"></i> সম্পূর্ণ রিপোর্ট কপি করুন
                     </button>
                 </div>
@@ -312,152 +284,104 @@
         </div>
 
         <div id="blogPage" class="hidden space-y-8 animate-fade-in print-hidden max-w-5xl mx-auto">
-            
             <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 text-center space-y-2">
-                <span class="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">ইসলামিক আইনকোষ</span>
+                <span class="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">ইসলামিক আইনকোষ ও প্রামাণ্য দলিল</span>
                 <h2 class="text-2xl md:text-3xl font-black text-emerald-800 dark:text-emerald-400 flex items-center justify-center gap-2">
                     <i class="fa-solid fa-book-quran text-amber-500"></i> ইসলামি মিরাস ও ফারায়েজ জ্ঞানকোষ
                 </h2>
-                <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">শরিয়াহ আইনের আলোকে মুসলিম উত্তরাধিকার নীতিমালার একটি সম্পূর্ণ ও নির্ভরযোগ্য আইনি নির্দেশিকা।</p>
+                <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">পবিত্র কুরআন, সুন্নাহ এবং ইজমার আলোকে মুসলিম উত্তরাধিকার নীতিমালার একটি সম্পূর্ণ আইনি ও গাণিতিক নির্দেশিকা।</p>
             </div>
 
-            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 space-y-4">
+            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 space-y-6">
                 <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <i class="fa-solid fa-star-and-crecent text-emerald-600"></i> ১. মিরাস আইনের উৎস ও ধর্মীয় গুরুত্ব
+                    <i class="fa-solid fa-scale-balanced text-emerald-600"></i> ১. মিরাস আইনের প্রধান উৎস ও প্রামাণ্য দলিলসমূহ
                 </h3>
                 <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    ইসলাম ধর্ম মানুষের মৃত্যুর পর তার রেখে যাওয়া ধন-সম্পদ বণ্টননের জন্য একটি স্বয়ংসম্পূর্ণ আইনি কাঠামো দান করেছে, যাকে <strong>মিরাস</strong> বা <strong>ফারায়েজ আইন</strong> বলা হয়। মানুষের তৈরি প্রচলিত অন্যান্য আইনের মতো এটি কোনো সমাজ বা শাসকের ইচ্ছার ওপর নির্ভরশীল নয়, বরং এটি সরাসরি আল্লাহ তাআলার একক হুকুম।
+                    ইসলামি উত্তরাধিকার আইন বা ফারায়েজ কোনো মানুষের তৈরি আইন নয়, বরং এটি সরাসরি মহান আল্লাহ তাআলা কর্তৃক নির্ধারিত। এর প্রধান প্রমাণসমূহ নিম্নরূপ:
                 </p>
-                <div class="bg-slate-50 dark:bg-slate-800/60 p-4 md:p-5 rounded-2xl border-l-4 border-emerald-500 space-y-2">
-                    <span class="text-xs font-extrabold text-emerald-700 dark:text-emerald-400 block"><i class="fa-solid fa-quote-left"></i> পবিত্র কুরআনের অমোঘ বিধান:</span>
-                    <p class="text-xs md:text-sm text-slate-700 dark:text-slate-200 italic leading-relaxed">
-                        "আল্লাহ তোমাদের সন্তানদের অংশ সম্পর্কে নির্দেশ দিচ্ছেন: এক পুত্রের অংশ দুই কন্যার অংশের সমান... এগুলো আল্লাহ কর্তৃক নির্ধারিত অংশ। নিশ্চয়ই আল্লাহ সর্বজ্ঞ, প্রজ্ঞাময়।" — (সূরা আন-নিসা, আয়াত: ১১)
-                    </p>
-                    <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 pt-1">
-                        সূরা আন-নিসার ১১, ১২ এবং ১৭৬ নম্বর আয়াতে নির্দিষ্ট অংশীদারদের কার কত অংশ হবে, তা গাণিতিকভাবে আল্লাহ নিজেই সুনির্দিষ্ট করে দিয়েছেন। রাসুলুল্লাহ (সা.) মিরাস শিক্ষাকে "জ্ঞানের অর্ধেক" হিসেবে আখ্যায়িত করেছেন।
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 space-y-4">
-                <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <i class="fa-solid fa-list-check text-emerald-600"></i> ২. মিরাস বণ্টননের পূর্বে ৪টি ফরজ আইনি ধাপ
-                </h3>
-                <p class="text-sm text-slate-600 dark:text-slate-300">
-                    কোনো ব্যক্তি মারা গেলেই তার সমস্ত সম্পদ সরাসরি উত্তরাধিকারীদের মাঝে বণ্টন করা শরিয়াহ সম্মত নয়। উত্তরাধিকারীদের অংশ বের করার আগে মৃত ব্যক্তির মোট সম্পদ থেকে ক্রমানুসারে নিচের ৪টি আর্থিক হক বা দায়-দেনা মেটাতে হবে:
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                    <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700">
-                        <h4 class="font-bold text-sm text-emerald-800 dark:text-emerald-400 mb-1">১. কাফন-দাফন ও শেষকৃত্য</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">মৃত ব্যক্তির স্থাবর-অস্থাবর নগদ টাকা থেকে অত্যন্ত অপচয়হীনভাবে তার ধর্মীয় কাফন ও দাফনের যাবতীয় প্রাথমিক খরচ মেটাতে হবে।</p>
-                    </div>
-                    <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700">
-                        <h4 class="font-bold text-sm text-emerald-800 dark:text-emerald-400 mb-1">২. মৃতের যাবতীয় ঋণ পরিশোধ</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">এটি সবচেয়ে গুরুত্বপূর্ণ ধাপ। কোনো বান্দার ঋণ বা ব্যাংকের দেনা থাকলে তা সম্পূর্ণ মিটিয়ে দিতে হবে। এমনকি স্ত্রীর মোহরানা বকেয়া থাকলে তাও ঋণ হিসেবে আগে শোধ করতে হবে।</p>
-                    </div>
-                    <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700">
-                        <h4 class="font-bold text-sm text-emerald-800 dark:text-emerald-400 mb-1">৩. বৈধ অসিয়ত (Will) বাস্তবায়ন</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">মৃত ব্যক্তি যদি কোনো অ-উত্তরাধিকারী ব্যক্তি বা দাতব্য সংস্থাকে সম্পদ দেওয়ার অসিয়ত করে যান, তবে ঋণ পরিশোধের পর অবশিষ্ট সম্পদের সর্বোচ্চ ১/৩ (এক-তৃতীয়াংশ) অংশ থেকে তা পূরণ করা যাবে।</p>
-                    </div>
-                    <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200 dark:border-slate-700">
-                        <h4 class="font-bold text-sm text-emerald-800 dark:text-emerald-400 mb-1">৪. নিট মিরাস বণ্টন</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">উপরের ৩টি কাজ সম্পন্ন করার পর যে নিট (Net) সম্পত্তি অবশিষ্ট থাকবে, কেবল সেটিই ক্যালকুলেটরে ইনপুট দিয়ে আল্লাহর আইন অনুযায়ী উত্তরাধিকারীদের মাঝে ভাগ করতে হবে।</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 space-y-4">
-                <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <i class="fa-solid fa-users-rectangle text-emerald-600"></i> ৩. উত্তরাধিকারীদের শরিয়াহ শ্রেণীবিভাগ
-                </h3>
-                <p class="text-sm md:text-base text-slate-600 dark:text-slate-300">
-                    ইসলামি ফারায়েজ আইনে যোগ্য আত্মীয়দের মূলত ৩টি প্রধান শ্রেণীতে বিন্যস্ত করে পর্যায়ক্রমে সম্পত্তি বণ্টন করা হয়:
-                </p>
+                
                 <div class="space-y-4">
-                    <div class="p-5 bg-emerald-50/40 dark:bg-slate-800/40 rounded-2xl border border-emerald-100 dark:border-slate-800">
-                        <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">১ম শ্রেণী</span>
-                        <h4 class="font-bold text-base text-slate-900 dark:text-white mt-1.5 mb-1">জাবিল ফুরুজ (Zawil Furud - সুনির্দিষ্ট অংশীদার)</h4>
-                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-2">
-                            পবিত্র কুরআনে যাদের অংশ গাণিতিকভাবে সরাসরি ১/২, ১/৪, ১/৮, ২/৩, ১/৩ বা ১/৬ সুনির্দিষ্ট করে দেওয়া হয়েছে, তাদের জাবিল ফুরুজ বলে। ফারায়েজের নিয়মে সম্পত্তি সর্বাগ্রে এদের দিতে হবে।
-                        </p>
-                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            🔒 **মোট অংশীদার ১২ জন:** ৪ জন পুরুষ (পিতা, দাদা, স্বামী, বৈপিত্রেয় ভাই) এবং ৮ জন নারী (মাতা, দাদী/নানী, স্ত্রী, কন্যা, পৌত্রী, সহোদরা বোন, বৈমাত্রেয় বোন, বৈপিত্রেয় বোন)।
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-emerald-600">
+                        <h4 class="font-bold text-emerald-800 dark:text-emerald-400 text-sm mb-1">📖 আল-কুরআনের নির্দেশ (সূরা আন-নিসা, আয়াত ১১):</h4>
+                        <p class="text-xs md:text-sm italic text-slate-700 dark:text-slate-300">
+                            "আল্লাহ তোমাদের সন্তানদের সম্পর্কে নির্দেশ দিচ্ছেন—এক ছেলের অংশ দুই মেয়ের অংশের সমান। কিন্তু কেবল নারী (কন্যা) যদি দুইয়ের অধিক হয়, তবে তারা রেখে যাওয়া সম্পত্তির দুই-তৃতীয়াংশ (২/৩) পাবে; আর যদি কেবল একজন কন্যা থাকে, তবে সে পাবে অর্ধেক (১/২)। মৃত ব্যক্তি সন্তান থাকলে তার পিতামাতার প্রত্যেকের জন্য রেখে যাওয়া সম্পত্তির এক-ষষ্ঠাংশ (১/৬) থাকবে..."
                         </p>
                     </div>
 
-                    <div class="p-5 bg-teal-50/40 dark:bg-slate-800/40 rounded-2xl border border-teal-100 dark:border-slate-800">
-                        <span class="bg-teal-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">২য় শ্রেণী</span>
-                        <h4 class="font-bold text-base text-slate-900 dark:text-white mt-1.5 mb-1">আসাবা (Asaba - অবশিষ্টভোগী)</h4>
-                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            ১ম শ্রেণীর (জাবিল ফুরুজ) আত্মীয়দের নির্দিষ্ট অংশ দেওয়ার পর যদি কোনো সম্পত্তি অবশিষ্ট থাকে, তবে বাকি সম্পূর্ণ সম্পত্তি আসাবারা পেয়ে থাকেন। আর যদি ১ম শ্রেণীর কেউ জীবিত না থাকেন, তবে পুরো সম্পত্তিই আসাবারা পান। যেমন- **পুত্র, পৌত্র, পিতা, আপন ভাই** ইত্যাদি। পুত্র জীবিত থাকলে সে নিজে আসাবা হিসেবে কন্যার দ্বিগুণ অনুপাতে বাকি সব সম্পত্তি লাভ করে।
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-emerald-600">
+                        <h4 class="font-bold text-emerald-800 dark:text-emerald-400 text-sm mb-1">📖 আল-কুরআনের নির্দেশ (সূরা আন-নিসা, আয়াত ১২):</h4>
+                        <p class="text-xs md:text-sm italic text-slate-700 dark:text-slate-300">
+                            "আর তোমাদের স্ত্রীদের রেখে যাওয়া সম্পত্তির এক-চতুর্থাংশ (১/৪) তোমাদের জন্য, যদি তাদের কোনো সন্তান না থাকে। কিন্তু তাদের সন্তান থাকলে তোমাদের জন্য হবে এক-অষ্টমাংশ (১/৮); তারা যা অসিয়ত করে তা পরিশোধ এবং ঋণ আদায়ের পর..."
                         </p>
                     </div>
 
-                    <div class="p-5 bg-slate-100/60 dark:bg-slate-800/20 rounded-2xl border border-slate-200 dark:border-slate-800">
-                        <span class="bg-slate-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">৩য় শ্রেণী</span>
-                        <h4 class="font-bold text-base text-slate-900 dark:text-white mt-1.5 mb-1">জাবিল আরহাম (Zawil Arham - দূরবর্তী রক্তসম্পর্কীয় আত্মীয়)</h4>
-                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            যদি ১ম বা ২য় শ্রেণীর কোনো আত্মীয়ই জীবিত না থাকে, তবে রক্তের দূরবর্তী আত্মীয়রা মিরাস পান। যেমন- দুহিত্র বা কন্যার সন্তান, ভাগ্নে-ভাগ্নি, মামা, খালা ইত্যাদি।
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-amber-600">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-400 text-sm mb-1">📜 আল-হাদিসের নির্দেশ (সহীহ বুখারী: ৬৭৩২):</h4>
+                        <p class="text-xs md:text-sm italic text-slate-700 dark:text-slate-300">
+                            রাসূলুল্লাহ (সাল্লাল্লাহু আলাইহি ওয়াসাল্লাম) ইরশাদ করেছেন: "তোমরা নির্দিষ্ট অংশসমূহ (ফারাজ) প্রথমে তার হকদারদের নিকট পৌঁছে দাও, তারপর যা অবশিষ্ট থাকবে তা সবচেয়ে নিকটবর্তী পুরুষ আত্মীয়ের (আসাবা) জন্য।"
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 space-y-4">
+            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 space-y-6">
                 <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <i class="fa-solid fa-ban text-emerald-600"></i> ৪. হজব বা বঞ্চনার অমোঘ নিয়মাবলী
+                    <i class="fa-solid fa-square-root-variable text-emerald-600"></i> ২. বাস্তব ও প্রামাণ্য গাণিতিক উদাহরণ (Solved Case Studies)
                 </h3>
-                <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    ফারায়েজ বিজ্ঞানের মূল চালিকাশক্তি হলো **"হজব" (Exclusion)** বা বঞ্চনার নিয়ম। এর মূল থিওরি হলো—মৃত ব্যক্তির অতি নিকটবর্তী আত্মীয়ের উপস্থিতিতে দূরবর্তী আত্মীয়রা সম্পূর্ণ বা আংশিক বঞ্চিত হবেন।
-                </p>
-                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden text-xs md:text-sm">
-                    <div class="grid grid-cols-2 bg-slate-100 dark:bg-slate-800 p-3 font-bold border-b border-slate-200 dark:border-slate-800">
-                        <div>জীবিত আত্মীয় (যিনি উপস্থিত আছেন)</div>
-                        <div>বঞ্চিত আত্মীয় (যিনি সম্পত্তি পাবেন না)</div>
+                
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="p-5 bg-emerald-50/40 dark:bg-slate-800/30 border border-emerald-100 dark:border-slate-800 rounded-2xl space-y-3">
+                        <span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-md">কেস স্টাডি ০১: আসাবা ও সাধারণ বণ্টন</span>
+                        <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                            <strong>পরিস্থিতি:</strong> এক ব্যক্তি মৃত্যুকালে ১ স্ত্রী, ১ পুত্র, এবং ২ কন্যা রেখে গেছেন। তার মোট সম্পদ ২৪,০০০ টাকা।
+                        </p>
+                        <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <p class="font-bold text-slate-700 dark:text-slate-300">🔹 গাণিতিক ধাপ ও সমাধান (মাসআলা: ৮):</p>
+                            <p>১. সন্তান থাকায় <strong>স্ত্রী (নির্দিষ্ট অংশীদার)</strong> পাবেন ১/৮ অংশ। ২৪,০০০ × (১/৮) = <strong>৩,০০০ টাকা</strong>।</p>
+                            <p>২. অবশিষ্ট অংশ (২৪,০০০ - ৩,০০০) = ২১,০০০ টাকা যা <strong>আসাবা (অবশিষ্টভোগী)</strong> হিসেবে পুত্র ও কন্যারা পাবেন।</p>
+                            <p>৩. ২:১ নীতি অনুযায়ী: পুত্র = ২ ইউনিট, ২ কন্যা = (১+১) = ২ ইউনিট। মোট ইউনিট = ৪।</p>
+                            <p>৪. প্রতি ইউনিটের মান = ২১,০০০ ÷ ৪ = ৫,২৫০ টাকা।</p>
+                            <p>৫. <strong>পুত্র পাবেন:</strong> (৫,২৫০ × ২) = <strong>১০,৫০০ টাকা</strong> (ভগ্নাংশ: ৭/১৬)।</p>
+                            <p>৬. <strong>প্রতি কন্যা পাবেন:</strong> (৫,২৫০ × ১) = <strong>৫,২৫০ টাকা</strong> (ভগ্নাংশ: ৭/৩২)।</p>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-2 p-3 border-b border-slate-100 dark:border-slate-800/60">
-                        <div class="font-semibold text-emerald-700 dark:text-emerald-400">১. জীবিত পুত্র (Son)</div>
-                        <div class="text-slate-600 dark:text-slate-400">নাতি (পৌত্র), ভাই, বোন, ভাতিজা, চাচা (সবাই বঞ্চিত)</div>
+
+                    <div class="p-5 bg-amber-50/40 dark:bg-slate-800/30 border border-amber-100 dark:border-slate-800 rounded-2xl space-y-3">
+                        <span class="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-400 text-xs font-bold px-2.5 py-1 rounded-md">কেস স্টাডি ০২: আউল (Aul) পরিস্থিতি</span>
+                        <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                            <strong>পরিস্থিতি:</strong> এক নারী মৃত্যুকালে তার স্বামী, আপন ২ বোন এবং মাতা রেখে গেছেন।
+                        </p>
+                        <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <p class="font-bold text-slate-700 dark:text-slate-300">🔹 গাণিতিক ধাপ ও সমাধান (মূল মাসআলা ৬ থেকে আউল হয়ে ৮):</p>
+                            <p>১. সন্তান না থাকায় <strong>স্বামী</strong> পাবেন = ১/২ অংশ (মাসআলা অনুযায়ী ৩ ভাগ)</p>
+                            <p>২. একাধিক বোন থাকায় <strong>২ বোন</strong> পাবেন = ২/৩ অংশ (মাসআলা অনুযায়ী ৪ ভাগ)</p>
+                            <p>৩. সন্তান না থাকায় ও একাধিক ভাইবোন থাকায় <strong>মাতা</strong> পাবেন = ১/৬ অংশ (মাসআলা অনুযায়ী ১ ভাগ)</p>
+                            <p>৪. মোট অংশ যোগফল: ৩ + ৪ + ১ = <strong>৮ ভাগ</strong>। কিন্তু মূল লসাগু বা মাসআলা ছিল ৬!</p>
+                            <p>৫. ⚖️ সমাধান: শরিয়াহর নিয়ম অনুযায়ী মূল মাসআলা ৬-কে বৃদ্ধি করে ৮ করা হলো। এখন সম্পত্তি ৮ ভাগে ভাগ হয়ে স্বামী পাবেন ৩/৮ অংশ, ২ বোন পাবেন ৪/৮ (বা ১/২) অংশ এবং মাতা পাবেন ১/৮ অংশ।</p>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-2 p-3 border-b border-slate-100 dark:border-slate-800/60">
-                        <div class="font-semibold text-emerald-700 dark:text-emerald-400">২. জীবিত পিতা (Father)</div>
-                        <div class="text-slate-600 dark:text-slate-400">দাদা (পিতামহ), আপন ভাই, বোন, সৎ ভাই-বোন</div>
-                    </div>
-                    <div class="grid grid-cols-2 p-3">
-                        <div class="font-semibold text-emerald-700 dark:text-emerald-400">৩. আপন ভাই (Brother)</div>
-                        <div class="text-slate-600 dark:text-slate-400">সৎ ভাই, ভাতিজা, চাচা</div>
+
+                    <div class="p-5 bg-teal-50/40 dark:bg-slate-800/30 border border-teal-100 dark:border-slate-800 rounded-2xl space-y-3">
+                        <span class="bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-400 text-xs font-bold px-2.5 py-1 rounded-md">কেস স্টাডি ০৩: রদ্দ (Radd) পরিস্থিতি</span>
+                        <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                            <strong>পরিস্থিতি:</strong> এক ব্যক্তি মৃত্যুকালে কেবল তার মাতা এবং ১ কন্যা রেখে গেছেন। কোনো আসাবা বা অন্য ওয়ারিশ নেই।
+                        </p>
+                        <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <p class="font-bold text-slate-700 dark:text-slate-300">🔹 গাণিতিক ধাপ ও সমাধান (মূল মাসআলা ৬ থেকে রদ্দ হয়ে ৪):</p>
+                            <p>১. ১ জন মাত্র কন্যা থাকায় <strong>কন্যা</strong> পাবেন = ১/২ অংশ (৬ ভাগের ৩ ভাগ)</p>
+                            <p>২. সন্তান থাকায় <strong>মাতা</strong> পাবেন = ১/৬ অংশ (৬ ভাগের ১ ভাগ)</p>
+                            <p>৩. মোট নির্ধারিত অংশ = ৩ + ১ = ৪ ভাগ। অবশিষ্ট রয়ে গেল (৬ - ৪) = ২ ভাগ।</p>
+                            <p>৪. 🔄 সমাধান: যেহেতু কোনো আসাবা আত্মীয় নেই, তাই অবশিষ্ট ২ ভাগ সম্পত্তি রদ্দ নীতি অনুযায়ী মাতা ও কন্যার মাঝে তাদের আনুপাতিক হারে (৩:১) ফেরত দেওয়া হবে।</p>
+                            <p>৫. চূড়ান্ত বণ্টন: মূল মাসআলা ৬ থেকে ৪-এ নেমে আসবে। <strong>কন্যা পাবেন: ৩/৪ অংশ</strong> এবং <strong>মাতা পাবেন: ১/৪ অংশ</strong>।</p>
+                        </div>
                     </div>
                 </div>
-                <p class="text-xs text-amber-600 dark:text-amber-400 font-medium italic">
-                    💡 বিশেষ দ্রষ্টব্য: ৫ জন উত্তরাধিকারী কখনো কোনো অবস্থাতেই সম্পত্তি থেকে পুরোপুরি বঞ্চিত (হজব) হন না। তারা হলেন— স্বামী, স্ত্রী, পিতা, মাতা এবং আপন সন্তান (পুত্র/কন্যা)।
-                </p>
             </div>
-
-            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-md border border-slate-100 dark:border-slate-800/80 space-y-4">
-                <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
-                    <i class="fa-solid fa-square-root-variable text-emerald-600"></i> ৫. আউল (Awl) ও রাদ্দ (Radd) এর গাণিতিক সমাধান
-                </h3>
-                <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    কখনো কখনো সুনির্দিষ্ট অংশীদারদের (জাবিল ফুরুজ) অংশ যোগ করার পর দেখা যায় ভগ্নাংশের যোগফল ১ বা সম্পূর্ণ সম্পত্তির চেয়ে বেশি অথবা কম হয়ে গেছে। এই গাণিতিক জটিলতা নিরসনে দুটি নিয়ম কাজ করে:
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-4 bg-rose-50/50 dark:bg-slate-800/40 rounded-xl border border-rose-100 dark:border-slate-800">
-                        <h4 class="font-bold text-sm text-rose-700 dark:text-rose-400 mb-1">আউল বা আওল (Awl - হর বৃদ্ধি):</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">যদি নির্ধারিত অংশীদারদের মোট অংশের যোগফল মূল সম্পত্তির চেয়ে বেশি হয়ে যায়, তবে আনুপাতিক হারে সবার প্রাপ্ত অংশ কিছুটা কমিয়ে দেওয়া হয়। এর ফলে কেউ পুরোপুরি বঞ্চিত হয় না।</p>
-                    </div>
-                    <div class="p-4 bg-indigo-50/50 dark:bg-slate-800/40 rounded-xl border border-indigo-100 dark:border-slate-800">
-                        <h4 class="font-bold text-sm text-indigo-700 dark:text-indigo-400 mb-1">রাদ্দ (Radd - ফেরত দেওয়া):</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">যদি অংশীদারদের অংশ দেওয়ার পর কিছু সম্পত্তি উদ্বৃত্ত থাকে এবং কোনো আসাবা (অবशिष्टভোগী) বেঁচে না থাকে, তবে সেই উদ্বৃত্ত সম্পত্তি পুনরায় জীবিত অংশীদারদের মাঝে ফেরত বণ্টন করা হয়।</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
-
     </main>
 
     <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs border-t border-slate-800 print-hidden">
-        <p>© 2026 আল-ফারায়েজ ল্যাব। সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>© ২০২৬ আল-ফারায়েজ ল্যাব। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
     <script>
@@ -468,101 +392,124 @@
             const blogPage = document.getElementById('blogPage');
             const calcBtn = document.getElementById('navCalcBtn');
             const blogBtn = document.getElementById('navBlogBtn');
-
             if (page === 'calculator') {
                 calcPage.classList.remove('hidden');
                 blogPage.classList.add('hidden');
-                calcBtn.className = "bg-emerald-600 text-white text-xs md:text-sm font-bold py-1.5 px-4 md:py-2 md:px-5 rounded-lg md:rounded-xl shadow transition-all flex items-center gap-1.5 flex-1 sm:flex-none justify-center";
-                blogBtn.className = "text-emerald-100 hover:text-white text-xs md:text-sm font-medium py-1.5 px-4 md:py-2 md:px-5 rounded-lg md:rounded-xl transition-all flex items-center gap-1.5 flex-1 sm:flex-none justify-center";
-            } else if (page === 'blog') {
+                calcBtn.className = "bg-emerald-600 text-white text-xs md:text-sm font-bold py-1.5 px-4 rounded-lg shadow flex items-center gap-1.5";
+                blogBtn.className = "text-emerald-100 hover:text-white text-xs md:text-sm font-medium py-1.5 px-4 rounded-lg flex items-center gap-1.5";
+            } else {
                 calcPage.classList.add('hidden');
                 blogPage.classList.remove('hidden');
-                blogBtn.className = "bg-emerald-600 text-white text-xs md:text-sm font-bold py-1.5 px-4 md:py-2 md:px-5 rounded-lg md:rounded-xl shadow transition-all flex items-center gap-1.5 flex-1 sm:flex-none justify-center";
-                calcBtn.className = "text-emerald-100 hover:text-white text-xs md:text-sm font-medium py-1.5 px-4 md:py-2 md:px-5 rounded-lg md:rounded-xl transition-all flex items-center gap-1.5 flex-1 sm:flex-none justify-center";
+                blogBtn.className = "bg-emerald-600 text-white text-xs md:text-sm font-bold py-1.5 px-4 rounded-lg shadow flex items-center gap-1.5";
+                calcBtn.className = "text-emerald-100 hover:text-white text-xs md:text-sm font-medium py-1.5 px-4 rounded-lg flex items-center gap-1.5";
             }
         }
 
-        function parseBanglaNumber(str) {
-            if (!str) return 0;
-            const banglaDigits = {'০':'0','১':'1','২':'2','৩':'3','৪':'4','৫':'5','৬':'6','৭':'7','৮':'8','৯':'9'};
-            const converted = str.toString().replace(/[০-৯]/g, function(w) {
-                return banglaDigits[w];
-            });
-            return parseFloat(converted) || 0;
+        function convertBanglaToEnglishNumber(str) {
+            if (!str) return '';
+            const banglaDigits = {'০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4', '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9'};
+            return str.toString().split('').map(digit => banglaDigits[digit] || digit).join('');
         }
 
-        function updateLiveLandHint() {
-            const landInput = document.getElementById('assetLand').value;
-            const landValue = Math.max(0, parseBanglaNumber(landInput));
-            const unit = document.getElementById('landUnit').value;
-            const hintSpan = document.getElementById('liveLandHint');
+        function convertToBanglaNumber(num) {
+            const banglaDigits = {'0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'};
+            return num.toString().split('').map(digit => banglaDigits[digit] || digit).join('');
+        }
+
+        function getNumericValue(id, isInt = false) {
+            const el = document.getElementById(id);
+            if (!el) return 0;
+            let valStr = el.value.trim();
+            valStr = convertBanglaToEnglishNumber(valStr);
+            const val = isInt ? parseInt(valStr) : parseFloat(valStr);
+            return isNaN(val) ? 0 : val;
+        }
+
+        function getBanglaFraction(sharePercentage) {
+            if (sharePercentage <= 0) return '০';
+            let decimal = sharePercentage / 100;
             
-            if (landValue > 0) {
-                if (unit === 'shatansh') {
-                    const acreValue = landValue / 100;
-                    hintSpan.innerText = `🔄 রূপান্তর: ${acreValue.toFixed(4)} একর`;
-                } else {
-                    const shatanshValue = landValue * 100;
-                    hintSpan.innerText = `🔄 রূপান্তর: ${shatanshValue.toFixed(2)} শতাংশ`;
+            let traditionalDenominators = [2, 3, 4, 6, 8, 12, 24, 27, 32, 36, 48, 72, 96, 100];
+            for (let d of traditionalDenominators) {
+                let n = Math.round(decimal * d);
+                if (Math.abs((n / d) - decimal) < 0.002) {
+                    if (n === d) return '১ (পূর্ণ)';
+                    return convertToBanglaNumber(n) + '/' + convertToBanglaNumber(d);
                 }
-            } else {
-                hintSpan.innerText = '';
             }
+            return convertToBanglaNumber(sharePercentage.toFixed(1)) + '%';
         }
 
         function updateNameFields() {
             const container = document.getElementById('dynamicNamesContainer');
             const savedNames = {};
-            container.querySelectorAll('input').forEach(input => {
-                savedNames[input.id] = input.value;
-            });
-
+            container.querySelectorAll('input').forEach(inp => { savedNames[inp.id] = inp.value; });
+            
+            let html = '<h3 class="text-xs font-bold text-emerald-800 dark:text-emerald-400 mb-2 flex items-center gap-1"><i class="fa-solid fa-signature"></i> ওয়ারিশগণের নাম লিখুন (ঐচ্ছিক):</h3>';
+            html += '<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">';
             let hasFields = false;
-            let html = '<h3 class="text-xs font-bold text-emerald-800 dark:text-emerald-400 uppercase mb-3 flex items-center gap-1"><i class="fa-solid fa-signature"></i> উত্তরাধিকারদের নাম লিখুন (ঐচ্ছিক)</h3><div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">';
 
-            if (document.getElementById('fatherAlive').checked) {
-                hasFields = true;
-                const inputId = 'name_father_1';
-                html += `<div><label class="block text-[10px] font-bold text-slate-400 mb-1">পিতার নাম</label><input type="text" id="${inputId}" value="${savedNames[inputId] || ''}" placeholder="পিতার পুরো নাম" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs outline-none focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white"></div>`;
-            }
-            if (document.getElementById('motherAlive').checked) {
-                hasFields = true;
-                const inputId = 'name_mother_1';
-                html += `<div><label class="block text-[10px] font-bold text-slate-400 mb-1">মাতার নাম</label><input type="text" id="${inputId}" value="${savedNames[inputId] || ''}" placeholder="মাতার পুরো নাম" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs outline-none focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white"></div>`;
-            }
-            if (document.getElementById('husbandAlive').checked) {
-                hasFields = true;
-                const inputId = 'name_husband_1';
-                html += `<div><label class="block text-[10px] font-bold text-slate-400 mb-1">স্বামীর নাম</label><input type="text" id="${inputId}" value="${savedNames[inputId] || ''}" placeholder="স্বামীর পুরো নাম" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs outline-none focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white"></div>`;
-            }
-
-            const config = [
-                { id: 'wifeCount', label: 'স্ত্রী', prefix: 'wife' },
-                { id: 'sonCount', label: 'পুত্র', prefix: 'son' },
-                { id: 'daughterCount', label: 'কন্যা', prefix: 'daughter' },
-                { id: 'grandsonCount', label: 'নাতি', prefix: 'grandson' },
-                { id: 'granddaughterCount', label: 'নাতনি', prefix: 'granddaughter' },
-                { id: 'stepBrotherCount', label: 'সৎ ভাই', prefix: 'stepBrother' },
-                { id: 'stepSisterCount', label: 'সৎ বোন', prefix: 'stepSister' },
-                { id: 'nephewCount', label: 'ভাতিজা', prefix: 'nephew' }
-            ];
-
-            config.forEach(f => {
-                const count = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById(f.id).value))) || 0;
-                for(let i = 1; i <= count; i++) {
+            function checkAndAddInput(idPrefix, label, count) {
+                if (count > 0) {
                     hasFields = true;
-                    const inputId = `name_${f.prefix}_${i}`;
-                    const placeholder = count > 1 ? `${f.label} নং ${i} এর নাম` : `${f.label} এর নাম`;
-                    html += `
-                        <div>
-                            <label class="block text-[10px] font-bold text-slate-400 mb-1">${placeholder}</label>
-                            <input type="text" id="${inputId}" value="${savedNames[inputId] || ''}" placeholder="নাম লিখুন" class="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs outline-none focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white">
-                        </div>
-                    `;
+                    for (let i = 1; i <= count; i++) {
+                        const fid = `name_${idPrefix}_${i}`;
+                        const val = savedNames[fid] || '';
+                        html += `<div>
+                            <label class="block text-[10px] text-slate-500 mb-0.5">${label} ${count > 1 ? i : ''}</label>
+                            <input type="text" id="${fid}" value="${val}" placeholder="নাম লিখুন" class="w-full px-2 py-1.5 bg-white dark:bg-slate-900 border rounded-lg text-xs text-slate-900 dark:text-white outline-none">
+                        </div>`;
+                    }
                 }
-            });
-            html += '</div>';
+            }
 
+            function checkCheckboxAndAdd(id, label) {
+                if (document.getElementById(id) && document.getElementById(id).checked) {
+                    hasFields = true;
+                    const fid = `name_${id}_1`;
+                    const val = savedNames[fid] || '';
+                    html += `<div>
+                        <label class="block text-[10px] text-slate-500 mb-0.5">${label}</label>
+                        <input type="text" id="${fid}" value="${val}" placeholder="নাম লিখুন" class="w-full px-2 py-1.5 bg-white dark:bg-slate-900 border rounded-lg text-xs text-slate-900 dark:text-white outline-none">
+                    </div>`;
+                }
+            }
+
+            checkCheckboxAndAdd('husbandAlive', 'স্বামী');
+            checkAndAddInput('wife', 'স্ত্রী', getNumericValue('wifeCount', true));
+            checkAndAddInput('son', 'পুত্র', getNumericValue('sonCount', true));
+            checkAndAddInput('deadSon', 'মৃত পুত্র', getNumericValue('deadSonCount', true));
+            checkAndAddInput('daughter', 'কন্যা', getNumericValue('daughterCount', true));
+            checkAndAddInput('deadDaughter', 'মৃত কন্যা', getNumericValue('deadDaughterCount', true));
+            
+            checkCheckboxAndAdd('fatherAlive', 'পিতা');
+            checkCheckboxAndAdd('motherAlive', 'মাতা');
+            checkCheckboxAndAdd('grandfatherAlive', 'দাদা');
+            checkCheckboxAndAdd('grandmotherAlive', 'দাদি');
+            checkCheckboxAndAdd('nanialive', 'নানি');
+
+            checkAndAddInput('fullBrother', 'সহোদর ভাই', getNumericValue('fullBrotherCount', true));
+            checkAndAddInput('fullSister', 'সহোদর বোন', getNumericValue('fullSisterCount', true));
+            checkAndAddInput('stepBrother', 'সৎ ভাই (বৈমাত্রেয়)', getNumericValue('stepBrotherCount', true));
+            checkAndAddInput('stepSister', 'সৎ বোন (বৈমাত্রেয়)', getNumericValue('stepSisterCount', true));
+            checkAndAddInput('uterineBrother', 'সৎ ভাই (বৈপিত্রেয়)', getNumericValue('uterineBrotherCount', true));
+            checkAndAddInput('uterineSister', 'সৎ বোন (বৈপিত্রেয়)', getNumericValue('uterineSisterCount', true));
+
+            checkAndAddInput('nephewFull', 'সহোদর ভাইয়ের পুত্র', getNumericValue('nephewFullCount', true));
+            checkAndAddInput('nephewStep', 'সৎ ভাই(বৈমাত্রেয়)-এর পুত্র', getNumericValue('nephewStepCount', true));
+            checkAndAddInput('grandNephewFull', 'সহোদর ভাইয়ের পুত্রের পুত্র', getNumericValue('grandNephewFullCount', true));
+            checkAndAddInput('grandNephewStep', 'সৎ ভাই(বৈমাত্রেয়)-এর পুত্রের পুত্র', getNumericValue('grandNephewStepCount', true));
+
+            checkAndAddInput('uncleFull', 'চাচা', getNumericValue('uncleFullCount', true));
+            checkAndAddInput('uncleStep', 'চাচা (বৈমাত্রেয়)', getNumericValue('uncleStepCount', true));
+            checkAndAddInput('cousinFull', 'চাচাতো ভাই', getNumericValue('cousinFullCount', true));
+            checkAndAddInput('cousinStep', 'চাচাতো ভাই (বৈমাত্রেয়)', getNumericValue('cousinStepCount', true));
+            checkAndAddInput('cousinNephewFull', 'চাচাতো ভাইয়ের পুত্র', getNumericValue('cousinNephewFullCount', true));
+            checkAndAddInput('cousinNephewStep', 'চাচাতো ভাই (বৈমাত্রেয়) এর পুত্র', getNumericValue('cousinNephewStepCount', true));
+            checkAndAddInput('cousinGrandNephewFull', 'চাচাতো ভাইয়ের পুত্রের পুত্র', getNumericValue('cousinGrandNephewFullCount', true));
+            checkAndAddInput('cousinGrandNephewStep', 'চাচাতো ভাই (বৈমাত্রেয়) এর পুত্রের পুত্র', getNumericValue('cousinGrandNephewStepCount', true));
+
+            html += '</div>';
             if (hasFields) {
                 container.innerHTML = html;
                 container.classList.remove('hidden');
@@ -572,345 +519,265 @@
             }
         }
 
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            const iconClass = isDark ? "fa-solid fa-sun text-amber-300" : "fa-solid fa-moon text-amber-300";
-            
-            if(document.getElementById('themeIcon')) document.getElementById('themeIcon').className = iconClass;
-            if(document.getElementById('themeIconMobile')) document.getElementById('themeIconMobile').className = iconClass;
-            if(document.getElementById('themeText')) document.getElementById('themeText').innerText = isDark ? "লাইট মোড" : "ডার্ক মোড";
-
-            // চার্ট ডার্ক মোড বাগ ফিক্স
-            if (currentChartInstance) {
-                currentChartInstance.options.plugins.legend.labels.color = isDark ? '#94a3b8' : '#334155';
-                currentChartInstance.update();
-            }
-        }
-
-        function resetForm() {
-            const inputs = document.querySelectorAll('input[type="text"]');
-            inputs.forEach(input => input.value = '');
-            
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(cb => cb.checked = false);
-
-            document.getElementById('landUnit').value = 'shatansh';
-            document.getElementById('liveLandHint').innerText = '';
-            document.getElementById('dynamicNamesContainer').innerHTML = '';
-            document.getElementById('dynamicNamesContainer').classList.add('hidden');
-
-            document.getElementById('faraidOutputContainer').innerHTML = `
-                <div class="text-center py-20 md:py-24 text-slate-400 dark:text-slate-600 space-y-3 print-hidden">
-                    <i class="fa-solid fa-file-invoice text-5xl text-slate-200 dark:text-slate-800"></i>
-                    <p class="text-sm font-medium">প্রয়োজনীয় ইনপুট সম্পন্ন করে হিসাব বাটনে ক্লিক করুন। চূড়ান্ত ফারায়েজ রিপোর্ট এখানে রেন্ডার হবে।</p>
-                </div>
-            `;
-            document.getElementById('chartFrame').classList.add('hidden');
-            document.getElementById('actionRow').classList.add('hidden');
-            if (currentChartInstance) currentChartInstance.destroy();
-        }
-
-        function copyReportText() {
-            const report = document.getElementById('faraidOutputContainer');
-            navigator.clipboard.writeText(report.innerText);
-            alert("✅ সম্পূর্ণ বণ্টননামা ও আইনি রিপোর্ট কপি হয়েছে!");
-        }
-
         function calculateFaraid() {
-            let name = document.getElementById('deceasedName').value.trim();
-            if(!name) name = "মরহুম/মরহুমা";
-            
-            // নেগেটিভ ইনপুট সুরক্ষা ভ্যালিডেশন
-            const cash = Math.max(0, parseBanglaNumber(document.getElementById('assetCash').value));
-            const gold = Math.max(0, parseBanglaNumber(document.getElementById('assetGold').value));
-            const silver = Math.max(0, parseBanglaNumber(document.getElementById('assetSilver').value));
-            const landInputVal = Math.max(0, parseBanglaNumber(document.getElementById('assetLand').value));
+            const cash = getNumericValue('assetCash');
+            const gold = getNumericValue('assetGold');
+            const silver = getNumericValue('assetSilver');
+            const land = getNumericValue('assetLand');
             const landUnit = document.getElementById('landUnit').value;
 
-            if (cash <= 0 && gold <= 0 && silver <= 0 && landInputVal <= 0) {
-                alert("❌ অনুগ্রহ করে অন্তত যেকোনো একটি সম্পদের পরিমাণ সঠিকভাবে লিখুন।");
-                return;
-            }
+            const funeral = getNumericValue('funeralCost');
+            const debt = getNumericValue('debtCost');
+            const will = getNumericValue('willCost');
+            const totalDeduction = funeral + debt + will;
+            const netCash = Math.max(0, cash - totalDeduction);
 
-            let landShatansh = 0;
-            let landAcre = 0;
-            if (landUnit === 'shatansh') {
-                landShatansh = landInputVal;
-                landAcre = landInputVal / 100;
-            } else {
-                landAcre = landInputVal;
-                landShatansh = landInputVal * 100;
-            }
-
-            const funeral = Math.max(0, parseBanglaNumber(document.getElementById('funeralCost').value));
-            const debt = Math.max(0, parseBanglaNumber(document.getElementById('debtCost').value));
-            let will = Math.max(0, parseBanglaNumber(document.getElementById('willCost').value));
-
-            let netCash = cash - (funeral + debt);
-            if (netCash < 0) netCash = 0;
-
-            const oneThirdCashBoundary = netCash * (1/3);
-            if (will > oneThirdCashBoundary) {
-                alert("⚠️ অসিয়ত অবশিষ্ট নগদ সম্পদের ১/৩ অংশের বেশি হতে পারে না। তাই শরিয়াহ অনুযায়ী এটিকে সর্বোচ্চ নগদ সীমায় আনা হয়েছে।");
-                will = oneThirdCashBoundary;
-            }
-            netCash = netCash - will;
-            if (netCash < 0) netCash = 0;
-
-            let netDistributable = 100;
-            let runningPool = netDistributable;
-
+            const husbandAlive = document.getElementById('husbandAlive').checked;
+            const wifeCount = getNumericValue('wifeCount', true);
+            const sonCount = getNumericValue('sonCount', true);
+            const deadSonCount = getNumericValue('deadSonCount', true);
+            const daughterCount = getNumericValue('daughterCount', true);
+            const deadDaughterCount = getNumericValue('deadDaughterCount', true);
+            
             const fatherAlive = document.getElementById('fatherAlive').checked;
             const motherAlive = document.getElementById('motherAlive').checked;
-            const wCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('wifeCount').value))) || 0;
-            const husbandAlive = document.getElementById('husbandAlive').checked;
-            const hCount = husbandAlive ? 1 : 0;
-            
-            // শরিয়াহ লজিক ট্র্যাপ ভ্যালিডেশন
-            if (wCount > 0 && husbandAlive) {
-                alert("❌ শরিয়াহ আইনি ত্রুটি: একজন মৃত ব্যক্তির একই সাথে স্বামী এবং স্ত্রী উভয়ই জীবিত উত্তরাধিকারী থাকতে পারেন না। অনুগ্রহ করে যেকোনো একটি সংশোধন করুন।");
-                return;
-            }
+            const grandfatherAlive = document.getElementById('grandfatherAlive').checked;
+            const grandmotherAlive = document.getElementById('grandmotherAlive').checked;
+            const naniAlive = document.getElementById('nanialive').checked;
 
-            const sCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('sonCount').value))) || 0;
-            const dCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('daughterCount').value))) || 0;
-            const gsCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('grandsonCount').value))) || 0;
-            const gdCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('granddaughterCount').value))) || 0;
-            const sbCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('stepBrotherCount').value))) || 0;
-            const ssCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('stepSisterCount').value))) || 0;
-            const nCount = Math.floor(Math.max(0, parseBanglaNumber(document.getElementById('nephewCount').value))) || 0;
+            const fbCount = getNumericValue('fullBrotherCount', true);
+            const fsCount = getNumericValue('fullSisterCount', true);
+            const sbCount = getNumericValue('stepBrotherCount', true);
+            const ssCount = getNumericValue('stepSisterCount', true);
+            const utBCount = getNumericValue('uterineBrotherCount', true);
+            const utSCount = getNumericValue('uterineSisterCount', true);
 
-            const hasDescendants = (sCount > 0 || dCount > 0 || gsCount > 0 || gdCount > 0);
-
-            let distributionList = [];
             let stepsLog = [];
-            let index = 1;
+            let distributionList = [];
 
-            stepsLog.push(`${index++}. মোট নগদ টাকা থেকে কাফন-দাফন (${funeral.toLocaleString()} টাকা) ও ঋণ (${debt.toLocaleString()} টাকা) পরিশোধ করা হলো।`);
-            if (will > 0) {
-                stepsLog.push(`${index++}. মৃতের বৈধ অসিয়ত পূরণের জন্য ${will.toLocaleString()} টাকা আলাদা রাখা হলো।`);
+            const effectiveSons = sonCount + deadSonCount;
+            const effectiveDaughters = daughterCount + deadDaughterCount;
+            const hasDescendants = (effectiveSons > 0 || effectiveDaughters > 0);
+
+            stepsLog.push(`<strong>➡️ 📋  ধাপ ১ [জাবিল ফুরুজ / নির্দিষ্ট অংশীদার]:</strong> কুরআন নির্ধারিত প্রাথমিক অংশ বণ্টন প্রক্রিয়া চালু হলো।`);
+
+            let husbandShare = 0;
+            let wifeTotalShare = 0;
+            let fatherShare = 0;
+            let motherShare = 0;
+            let grandfatherShare = 0;
+            let grandmotherShare = 0;
+            let naniShare = 0;
+            let uterineSiblingsTotalShare = 0;
+
+            if (husbandAlive) {
+                husbandShare = hasDescendants ? 1/4 : 1/2;
+                stepsLog.push(`- স্বামী নির্ধারিত অংশ পেলেন ${hasDescendants ? '১/৪ (সন্তান থাকায়)' : '১/২ (সন্তান না থাকায়)'}।`);
+            } else if (wifeCount > 0) {
+                wifeTotalShare = hasDescendants ? 1/8 : 1/4;
+                stepsLog.push(`- স্ত্রী (${wifeCount} জন) যৌথভাবে পেলেন ${hasDescendants ? '১/৮ (সন্তান থাকায়)' : '১/৪ (সন্তান না থাকায়)'}।`);
             }
 
-            if (motherAlive) {
-                const totalSiblings = sbCount + ssCount;
-                let motherShare = (hasDescendants || totalSiblings >= 2) ? netDistributable * (1/6) : netDistributable * (1/3);
-                runningPool -= motherShare;
-                stepsLog.push(`${index++}. ${hasDescendants || totalSiblings >= 2 ? 'মৃতের সন্তান বা একাধিক ভাই-বোন থাকায় মাতা মোট সম্পত্তির ১/৬ অংশ পাবেন।' : 'মৃতের কোনো সন্তান বা একাধিক ভাই-বোন না থাকায় মাতা মোট সম্পত্তির ১/৩ অংশ পাবেন।'}`);
-                
-                const mName = document.getElementById('name_mother_1')?.value.trim();
-                distributionList.push({ relationship: 'মাতা', heirName: mName || 'মাতা', share: motherShare, color: '#10b981' });
-            }
-
-            if (hCount > 0) {
-                let husbandShare = hasDescendants ? netDistributable * 0.25 : netDistributable * 0.50;
-                runningPool -= husbandShare;
-                stepsLog.push(`${index++}. ${hasDescendants ? 'সন্তান থাকায় স্বামী ১/৪ অংশ পাবেন।' : 'কোনো সন্তান না থাকায় স্বামী ১/২ অংশ পাবেন।'}`);
-                
-                const hName = document.getElementById('name_husband_1')?.value.trim();
-                distributionList.push({ relationship: 'স্বামী', heirName: hName || 'স্বামী', share: husbandShare, color: '#3b82f6' });
-            } else if (wCount > 0) {
-                let totalWifeShare = hasDescendants ? netDistributable * 0.125 : netDistributable * 0.25;
-                runningPool -= totalWifeShare;
-                stepsLog.push(`${index++}. ${hasDescendants ? 'সন্তান থাকায় স্ত্রীরা যৌথভাবে ১/৮ অংশ পাবেন।' : 'কোনো সন্তান না থাকায় স্ত্রীরা যৌথভাবে ১/৪ অংশ পাবেন।'}`);
-                const perWife = totalWifeShare / wCount;
-                for (let i = 1; i <= wCount; i++) {
-                    const wName = document.getElementById(`name_wife_${i}`)?.value.trim();
-                    distributionList.push({ relationship: 'স্ত্রী', heirName: wName || `স্ত্রী নং ${i}`, share: perWife, color: '#ec4899' });
-                }
-            }
-
-            let fatherFixedShare = 0;
             if (fatherAlive) {
-                if (hasDescendants) {
-                    fatherFixedShare = netDistributable * (1/6);
-                    runningPool -= fatherFixedShare;
-                    stepsLog.push(`${index++}. সন্তান জীবিত থাকায় পিতা প্রথমে নিশ্চিত ১/৬ অংশ পাবেন।`);
+                fatherShare = hasDescendants ? 1/6 : 0; 
+                if(hasDescendants) stepsLog.push(`- পিতা নির্ধারিত অংশ পেলেন ১/৬ (সন্তান থাকায়)।`);
+            }
+            if (motherAlive) {
+                const totalSiblings = fbCount + fsCount + sbCount + ssCount + utBCount + utSCount;
+                motherShare = (hasDescendants || totalSiblings >= 2) ? 1/6 : 1/3;
+                stepsLog.push(`- মাতা নির্ধারিত অংশ পেলেন ${motherShare === 1/6 ? '১/৬ (সন্তান বা একাধিক ভাই-বোন থাকায়)' : '১/৩'}।`);
+            }
+
+            if (!fatherAlive && grandfatherAlive) {
+                grandfatherShare = hasDescendants ? 1/6 : 0;
+                if(hasDescendants) stepsLog.push(`- পিতার অনুপস্থিতিতে দাদা ১/৬ অংশ পেলেন।`);
+            }
+            if (!motherAlive && naniAlive) {
+                naniShare = 1/6;
+                stepsLog.push(`- মাতার অনুপস্থিতিতে নানি ১/৬ অংশ পেলেন।`);
+            }
+            if (!motherAlive && !fatherAlive && grandmotherAlive) {
+                grandmotherShare = naniShare > 0 ? 0 : 1/6;
+                if(grandmotherShare > 0) stepsLog.push(`- মাতা ও পিতার অনুপস্থিতিতে দাদি ১/৬ অংশ পেলেন।`);
+            }
+
+            if (!hasDescendants && !fatherAlive && !grandfatherAlive) {
+                const utCount = utBCount + utSCount;
+                if (utCount === 1) {
+                    uterineSiblingsTotalShare = 1/6;
+                    stepsLog.push(`- ১ জন বৈপিত্রেয় ভাই/বোন নির্ধারিত ১/৬ অংশ পেলেন।`);
+                } else if (utCount > 1) {
+                    uterineSiblingsTotalShare = 1/3;
+                    stepsLog.push(`- একাধিক বৈপিত্রেয় ভাই/বোন যৌথভাবে ১/৩ অংশ পেলেন।`);
                 }
             }
 
-            if (sCount > 0 || dCount > 0) {
-                const totalUnits = (sCount * 2) + (dCount * 1);
-                const valuePerUnit = runningPool / totalUnits;
+            stepsLog.push(`<strong>➡️ 🚫  ধাপ ২ [মাহজুব / অবরুদ্ধ ওয়ারিশ বিশ্লেষণ]:</strong> রক্তের নিকটবর্তী দূরত্বের কারণে বঞ্চিতদের তালিকা:`);
+            let excludedAny = false;
+            if (sonCount > 0) {
+                stepsLog.push(`- মৃত ব্যক্তির সরাসরি পুত্র জীবিত থাকায় ভাই-বোন, নাতি-নাতনি এবং চাচারা সম্পূর্ণ বঞ্চিত (মাহজুব) হয়েছেন।`);
+                excludedAny = true;
+            }
+            if (fatherAlive && !excludedAny) {
+                stepsLog.push(`- পিতা জীবিত থাকায় দাদা এবং সমস্ত ভাই-বোনেরা আইনি সম্পত্তি থেকে বঞ্চিত বা মাহজুব।`);
+                excludedAny = true;
+            }
+            if(!excludedAny) stepsLog.push(`- এই কেসে কোনো প্রাথমিক উত্তরাধিকারী দ্বারা অন্য কোনো বৈধ আসাবা মাহজুব হননি।`);
 
-                if (sCount > 0 && dCount > 0) {
-                    stepsLog.push(`${index++}. পুত্র ও কন্যারা অবশিষ্ট সম্পত্তি আসাবা হিসেবে ২:১ অনুপাতে পাবেন।`);
-                } else if (sCount > 0) {
-                    stepsLog.push(`${index++}. অবশিষ্ট সমস্ত সম্পত্তি পুত্রদের মধ্যে সমবণ্টন করা হলো।`);
-                } else if (dCount > 0) {
-                    stepsLog.push(`${index++}. কন্যারা জাবিল ফুরুজ ও আসাবা নিয়মে অবশিষ্ট অংশ লাভ করলেন।`);
-                }
+            let totalFixed = husbandShare + wifeTotalShare + fatherShare + motherShare + grandfatherShare + grandmotherShare + naniShare + uterineSiblingsTotalShare;
+            let remaining = 1 - totalFixed;
+            let residualPool = Math.max(0, remaining);
 
-                if (sCount > 0) {
-                    const perSonShare = valuePerUnit * 2;
-                    for (let i = 1; i <= sCount; i++) {
-                        const sName = document.getElementById(`name_son_${i}`)?.value.trim();
-                        distributionList.push({ relationship: 'পুত্র', heirName: sName || `পুত্র নং ${i}`, share: perSonShare, color: '#1d4ed8' });
+            let hasAsaba = (effectiveSons > 0 || fatherAlive && !hasDescendants || grandfatherAlive && !hasDescendants || fbCount > 0 || fsCount > 0 || sbCount > 0 || ssCount > 0);
+            
+            if (hasAsaba && residualPool > 0) {
+                stepsLog.push(`<strong>➡️ ⚖️  ধাপ ৪ [আসাবা / অবশিষ্টভোগী বণ্টন]:</strong> জাবিল ফুরুজের পর অবশিষ্ট ${ (residualPool*100).toFixed(1) }% সম্পত্তি আসাবাদের মাঝে বণ্টন করা হচ্ছে।`);
+                
+                if (effectiveSons > 0 || effectiveDaughters > 0) {
+                    const totalUnits = (effectiveSons * 2) + (effectiveDaughters * 1);
+                    const perUnit = residualPool / totalUnits;
+
+                    if (sonCount > 0) {
+                        for (let i = 1; i <= sonCount; i++) {
+                            const name = document.getElementById(`name_son_${i}`)?.value.trim() || `পুত্র নং ${i}`;
+                            distributionList.push({ relationship: 'পুত্র (আসাবা)', heirName: name, share: perUnit * 2 * 100, color: '#0284c7' });
+                        }
+                    }
+                    if (deadSonCount > 0) {
+                        for (let i = 1; i <= deadSonCount; i++) {
+                            const name = document.getElementById(`name_deadSon_${i}`)?.value.trim() || `মৃত পুত্রের পরিবার ${i}`;
+                            distributionList.push({ relationship: 'মৃত পুত্র (এতিম নাতি)', heirName: name, share: perUnit * 2 * 100, color: '#38bdf8' });
+                        }
+                    }
+                    if (daughterCount > 0) {
+                        for (let i = 1; i <= daughterCount; i++) {
+                            const name = document.getElementById(`name_daughter_${i}`)?.value.trim() || `কন্যা (আসাবা)`;
+                            distributionList.push({ relationship: 'কন্যা (আসাবা)', heirName: name, share: perUnit * 1 * 100, color: '#f43f5e' });
+                        }
+                    }
+                    if (deadDaughterCount > 0) {
+                        for (let i = 1; i <= deadDaughterCount; i++) {
+                            const name = document.getElementById(`name_deadDaughter_${i}`)?.value.trim() || `মৃত কন্যার পরিবার ${i}`;
+                            distributionList.push({ relationship: 'মৃত কন্যা (এতিম নাতনি)', heirName: name, share: perUnit * 1 * 100, color: '#fda4af' });
+                        }
+                    }
+                    stepsLog.push(`- কুরআন শরিফের ২:১ নীতি অনুযায়ী পুত্র এবং কন্যাদের মাঝে অবশিষ্টাংশ সাফল্যের সাথে বণ্টন করা হলো।`);
+                    residualPool = 0;
+                } else {
+                    if (fatherAlive) {
+                        fatherShare += residualPool;
+                        stepsLog.push(`- কোনো সন্তান না থাকায় অবশিষ্টাংশ সম্পূর্ণ আসাবা হিসেবে পিতা লাভ করলেন।`);
+                        residualPool = 0;
+                    } else if (grandfatherAlive) {
+                        grandfatherShare += residualPool;
+                        stepsLog.push(`- পিতা ও সন্তানের অনুপস্থিতিতে দাদা অবশিষ্টভোগী হিসেবে সম্পদ পেলেন।`);
+                        residualPool = 0;
+                    } else if (fbCount > 0 || fsCount > 0) {
+                        const units = (fbCount * 2) + (fsCount * 1);
+                        const pUnit = residualPool / units;
+                        for(let i=1; i<=fbCount; i++) {
+                            const name = document.getElementById(`name_fullBrother_${i}`)?.value.trim() || `সহোদর ভাই ${i}`;
+                            distributionList.push({ relationship: 'সহোদর ভাই (আসাবা)', heirName: name, share: pUnit * 2 * 100, color: '#8b5cf6' });
+                        }
+                        for(let i=1; i<=fsCount; i++) {
+                            const name = document.getElementById(`name_fullSister_${i}`)?.value.trim() || `সহোদর বোন (আসাবা)`;
+                            distributionList.push({ relationship: 'সহোদর বোন (আসাবা)', heirName: name, share: pUnit * 1 * 100, color: '#c084fc' });
+                        }
+                        residualPool = 0;
                     }
                 }
-                if (dCount > 0) {
-                    const perDaughterShare = valuePerUnit * 1;
-                    for (let i = 1; i <= dCount; i++) {
-                        const dName = document.getElementById(`name_daughter_${i}`)?.value.trim();
-                        distributionList.push({ relationship: 'কন্যা', heirName: dName || `কন্যা নং ${i}`, share: perDaughterShare, color: '#f43f5e' });
-                    }
+            }
+
+            if (husbandShare > 0) distributionList.push({ relationship: 'স্বামী', heirName: document.getElementById('name_husband_1')?.value.trim() || 'স্বামী', share: husbandShare * 100, color: '#ec4899' });
+            if (wifeTotalShare > 0) {
+                const eachWifeShare = (wifeTotalShare / wifeCount) * 100;
+                for(let i=1; i<=wifeCount; i++) {
+                    distributionList.push({ relationship: 'স্ত্রী', heirName: document.getElementById(`name_wife_${i}`)?.value.trim() || `স্ত্রী নং ${i}`, share: eachWifeShare, color: '#f472b6' });
                 }
-                runningPool = 0;
-            } else if (gsCount > 0 || gdCount > 0) {
-                const grandUnits = (gsCount * 2) + (gdCount * 1);
-                const grandUnitVal = runningPool / grandUnits;
-                if (gsCount > 0) {
-                    for (let i = 1; i <= gsCount; i++) {
-                        const gsName = document.getElementById(`name_grandson_${i}`)?.value.trim();
-                        distributionList.push({ relationship: 'নাতি', heirName: gsName || `নাতি নং ${i}`, share: grandUnitVal * 2, color: '#06b6d4' });
-                    }
+            }
+            if (fatherShare > 0 && (hasDescendants || !hasAsaba)) distributionList.push({ relationship: 'পিতা', heirName: document.getElementById('name_father_1')?.value.trim() || 'পিতা', share: fatherShare * 100, color: '#10b981' });
+            if (motherShare > 0) distributionList.push({ relationship: 'মাতা', heirName: document.getElementById('name_mother_1')?.value.trim() || 'মাতা', share: motherShare * 100, color: '#14b8a6' });
+            if (grandfatherShare > 0 && distributionList.findIndex(x => x.relationship.includes('দাদা')) === -1) distributionList.push({ relationship: 'দাদা', heirName: document.getElementById('name_grandfather_1')?.value.trim() || 'দাদা', share: grandfatherShare * 100, color: '#059669' });
+            if (grandmotherShare > 0) distributionList.push({ relationship: 'দাদি', heirName: document.getElementById('name_grandmother_1')?.value.trim() || 'দাদি', share: grandmotherShare * 100, color: '#0d9488' });
+            if (naniShare > 0) distributionList.push({ relationship: 'নানি', heirName: document.getElementById('name_nanialive_1')?.value.trim() || 'নানি', share: naniShare * 100, color: '#0f766e' });
+            
+            if (uterineSiblingsTotalShare > 0) {
+                const utCount = utBCount + utSCount;
+                const eachUtShare = (uterineSiblingsTotalShare / utCount) * 100;
+                for(let i=1; i<=utBCount; i++) distributionList.push({ relationship: 'সৎ ভাই (বৈপিত্রেয়)', heirName: document.getElementById(`name_uterineBrother_${i}`)?.value.trim() || `বৈপিত্রেয় ভাই ${i}`, share: eachUtShare, color: '#64748b' });
+                for(let i=1; i<=utSCount; i++) distributionList.push({ relationship: 'সৎ বোন (বৈপিত্রেয়)', heirName: document.getElementById(`name_uterineSister_${i}`)?.value.trim() || `বৈপিত্রেয় বোন ${i}`, share: eachUtShare, color: '#94a3b8' });
+            }
+
+            stepsLog.push(`<strong>➡️ 🔄  ধাপ ৩ [মাসআলা সমন্বয় - আউল ও রদ্দ বিশ্লেষণ]:</strong> মোট অংশের অনুপাত পরীক্ষা ও সমতাকরণ করা হচ্ছে।`);
+            let finalSum = distributionList.reduce((acc, i) => acc + i.share, 0);
+            
+            if (finalSum > 0 && Math.abs(finalSum - 100) > 0.1) {
+                if(finalSum > 100) {
+                    stepsLog.push(`- ⚠️ <strong>আউল (Aul) পরিস্থিতি:</strong> নির্দিষ্ট অংশীদারদের মোট পাওনা ১০০% এর বেশি (${finalSum.toFixed(1)}%) হয়ে যাওয়ায় শরিয়াহর আনুপাতিক হ্রাস পদ্ধতি (আউল) প্রয়োগ করা হলো।`);
+                } else if(finalSum < 100 && !hasAsaba) {
+                    stepsLog.push(`- 🔄 <strong>রদ্দ (Radd) পরিস্থিতি:</strong> আসাবা না থাকায় উদ্বৃত্ত অংশ স্বামী/স্ত্রী ব্যতিরেকে অন্যান্য অংশীদারদের মাঝে পুনরায় 'রদ্দ' নীতিতে ফেরত দেওয়া হলো।`);
                 }
-                if (gdCount > 0) {
-                    for (let i = 1; i <= gdCount; i++) {
-                        const gdName = document.getElementById(`name_granddaughter_${i}`)?.value.trim();
-                        distributionList.push({ relationship: 'নাতনি', heirName: gdName || `নাতনি নং ${i}`, share: grandUnitVal * 1, color: '#14b8a6' });
-                    }
-                }
-                runningPool = 0;
+                distributionList.forEach(item => { item.share = (item.share / finalSum) * 100; });
             } else {
-                if (fatherAlive) {
-                    fatherFixedShare += runningPool;
-                    stepsLog.push(`${index++}. কোনো সন্তান না থাকায় পিতা অবশিষ্টভোগী (আসাবা) হিসেবে বাকি সব সম্পত্তি পাবেন।`);
-                    runningPool = 0;
-                } else if (sbCount > 0 || ssCount > 0) {
-                    const collateralUnits = (sbCount * 2) + (ssCount * 1);
-                    const perColUnit = runningPool / collateralUnits;
-                    if (sbCount > 0) {
-                        for (let i = 1; i <= sbCount; i++) {
-                            const sbName = document.getElementById(`name_stepBrother_${i}`)?.value.trim();
-                            distributionList.push({ relationship: 'সৎ ভাই', heirName: sbName || `সৎ ভাই নং ${i}`, share: perColUnit * 2, color: '#ea580c' });
-                        }
-                    }
-                    if (ssCount > 0) {
-                        for (let i = 1; i <= ssCount; i++) {
-                            const ssName = document.getElementById(`name_stepSister_${i}`)?.value.trim();
-                            distributionList.push({ relationship: 'সৎ বোন', heirName: ssName || `সৎ বোন নং ${i}`, share: perColUnit * 1, color: '#f97316' });
-                        }
-                    }
-                    runningPool = 0;
-                } else if (nCount > 0) {
-                    const perNephew = runningPool / nCount;
-                    for (let i = 1; i <= nCount; i++) {
-                        const nName = document.getElementById(`name_nephew_${i}`)?.value.trim();
-                        distributionList.push({ relationship: 'ভাতিজা', heirName: nName || `ভাতিজা নং ${i}`, share: perNephew, color: '#6366f1' });
-                    }
-                    runningPool = 0;
-                }
+                stepsLog.push(`- মাসআলা সম্পূর্ণ সুষম ও সামঞ্জস্যপূর্ণ (Total exact 100%) রয়েছে।`);
             }
 
-            if (fatherAlive && fatherFixedShare > 0) {
-                const fName = document.getElementById('name_father_1')?.value.trim();
-                distributionList.unshift({ relationship: 'পিতা', heirName: fName || 'পিতা', share: fatherFixedShare, color: '#047857' });
-            }
+            stepsLog.push(`<strong>➡️ 📊  ধাপ ৫ [তাশহীহ / চূড়ান্ত রূপান্তর]:</strong> বণ্টনকৃত অংশগুলোকে নেট সম্পদ ও প্রথাগত শরিয়াহ ভগ্নাংশে রূপান্তর সম্পন্ন হলো।`);
 
             let tableRows = '';
             distributionList.forEach(item => {
-                const percent = item.share.toFixed(1);
                 const factor = item.share / 100;
-                
-                let assetBreakdownHtml = '<div class="text-right space-y-1 text-xs font-bold">';
-                let hasAnyAsset = false;
-                
-                if (cash > 0) {
-                    const calcCash = factor * netCash;
-                    assetBreakdownHtml += `<p class="text-emerald-600 dark:text-emerald-400">💵 নগদ: ${calcCash.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} টা</p>`;
-                    hasAnyAsset = true;
+                let breakdownHtml = '<div class="text-right text-[11px] space-y-0.5 font-bold">';
+                if (cash > 0) breakdownHtml += `<p class="text-emerald-600">💵 নগদ: ${convertToBanglaNumber((factor * netCash).toFixed(2))} টা</p>`;
+                if (gold > 0) breakdownHtml += `<p class="text-amber-600">✨ স্বর্ণ: ${convertToBanglaNumber((factor * gold).toFixed(2))} ভরি</p>`;
+                if (silver > 0) breakdownHtml += `<p class="text-slate-500">🪙 রুপো: ${convertToBanglaNumber((factor * silver).toFixed(2))} ভরি</p>`;
+                if (land > 0) {
+                    const landVal = (factor * land).toFixed(6);
+                    breakdownHtml += `<p class="text-teal-600">🪵 জমি: ${convertToBanglaNumber(landVal)} ${landUnit}</p>`;
                 }
-                if (gold > 0) {
-                    const calcGold = factor * gold;
-                    assetBreakdownHtml += `<p class="text-amber-600 dark:text-amber-500">✨ স্বর্ণ: ${calcGold.toFixed(2)} ভরি</p>`;
-                    hasAnyAsset = true;
-                }
-                if (silver > 0) {
-                    const calcSilver = factor * silver;
-                    assetBreakdownHtml += `<p class="text-slate-500 dark:text-slate-400">🪙 রুপো: ${calcSilver.toFixed(2)} ভরি</p>`;
-                    hasAnyAsset = true;
-                }
-                if (landInputVal > 0) {
-                    const calcLandShatansh = factor * landShatansh;
-                    const calcLandAcre = factor * landAcre;
-                    assetBreakdownHtml += `<p class="text-teal-600 dark:text-teal-400">🗺️ জমি: ${calcLandShatansh.toFixed(2)} শতাংশ (${calcLandAcre.toFixed(4)} একর)</p>`;
-                    hasAnyAsset = true;
-                }
-                if (!hasAnyAsset) {
-                    assetBreakdownHtml += `<p class="text-slate-400">০</p>`;
-                }
-                assetBreakdownHtml += '</div>';
+                breakdownHtml += '</div>';
 
-                tableRows += `
-                    <tr class="border-b border-slate-200 dark:border-slate-800 transition-all hover:bg-slate-50/50 dark:hover:bg-slate-800/20">
-                        <td class="p-4 text-center font-semibold text-slate-500 dark:text-slate-400 text-sm">${item.relationship}</td>
-                        <td class="p-4 text-center font-bold text-base text-slate-900 dark:text-slate-100">${item.heirName}</td>
-                        <td class="p-4 text-right text-amber-600 dark:text-amber-400 font-extrabold text-base">${percent}%</td>
-                        <td class="p-4 text-right">${assetBreakdownHtml}</td>
-                    </tr>
-                `;
+                tableRows += `<tr class="border-b dark:border-slate-800 text-xs md:text-sm">
+                    <td class="p-3 font-bold text-emerald-800 dark:text-emerald-400">${item.relationship}</td>
+                    <td class="p-3 text-center dark:text-slate-300 font-medium">${item.heirName}</td>
+                    <td class="p-3 text-center font-bold text-amber-700 dark:text-amber-400 bg-amber-50/30 dark:bg-amber-950/10">${getBanglaFraction(item.share)}</td>
+                    <td class="p-3 text-right font-extrabold text-slate-900 dark:text-white">${convertToBanglaNumber(item.share.toFixed(2))}%</td>
+                    <td class="p-3">${breakdownHtml}</td>
+                </tr>`;
             });
 
-            let logItems = '';
-            stepsLog.forEach(log => {
-                logItems += `<li class="text-sm text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm leading-relaxed font-medium">${log}</li>`;
-            });
+            let logHtml = '';
+            stepsLog.forEach(log => { logHtml += `<li class="text-[12px] text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900/60 p-2 rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm">${log}</li>`; });
 
-            let summaryNetAssets = '';
-            if (cash > 0) summaryNetAssets += `${netCash.toLocaleString()} টাকা নগদ, `;
-            if (gold > 0) summaryNetAssets += `${gold} ভরি স্বর্ণ, `;
-            if (silver > 0) summaryNetAssets += `${silver} ভরি রুপো, `;
-            if (landInputVal > 0) {
-                summaryNetAssets += `${landShatansh.toFixed(2)} শতাংশ (${landAcre.toFixed(4)} একর) জমি, `;
-            }
-            summaryNetAssets = summaryNetAssets.trim().replace(/,\s*$/, "");
-            if(!summaryNetAssets) summaryNetAssets = "বণ্টনযোগ্য কোনো অবশিষ্ট সম্পদ নেই";
-
+            const decName = document.getElementById('deceasedName').value.trim() || 'মরহুম';
             document.getElementById('faraidOutputContainer').innerHTML = `
-                <div class="space-y-6 animate-fade-in">
-                    
-                    <div class="p-5 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-slate-800/60 dark:to-slate-700/40 rounded-2xl border-2 border-emerald-500/30 dark:border-slate-700 text-center">
-                        <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-widest block mb-1">ইসলামিক ফারায়েজ সম্পত্তি বণ্টননামা</span>
-                        <h3 class="text-xl font-black text-slate-900 dark:text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-user-circle text-emerald-600"></i> মৃত ব্যক্তি: ${name}
-                        </h3>
-                        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">নিট বণ্টনযোগ্য মোট সম্পদ: <br><span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-sm md:text-base">${summaryNetAssets}</span></p>
+                <div class="space-y-4">
+                    <div class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-xl border border-emerald-100 dark:border-emerald-900/60 text-xs">
+                        <p class="font-bold text-emerald-800 dark:text-emerald-400">👤 মৃত ব্যক্তি: ${decName}</p>
+                        ${totalDeduction > 0 ? `<p class="text-rose-600 font-semibold mt-1">⚠️ প্রাথমিক কর্তন (কাফন/ঋণ/অসিয়ত): ${convertToBanglaNumber(totalDeduction.toFixed(2))} টাকা নগদ থেকে মাইনাস করা হয়েছে।</p>` : ''}
                     </div>
-
-                    <div class="overflow-x-auto rounded-2xl border-2 border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="overflow-x-auto rounded-2xl border dark:border-slate-800 shadow-sm">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-black text-sm border-b-2 border-slate-300 dark:border-slate-700">
-                                    <th class="p-4 text-center">সম্পর্ক</th>
-                                    <th class="p-4 text-center">উত্তরাধিকারীর নাম</th>
-                                    <th class="p-4 text-right">প্রাপ্ত অংশ (%)</th>
-                                    <th class="p-4 text-right">প্রাপ্ত সম্পদের বিবরণ</th>
+                                <tr class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[11px] md:text-xs font-bold uppercase">
+                                    <th class="p-3">সম্পর্ক</th>
+                                    <th class="p-3 text-center">নাম</th>
+                                    <th class="p-3 text-center text-amber-800 dark:text-amber-400">প্রাপ্ত ভগ্নাংশ</th>
+                                    <th class="p-3 text-right">অংশ (%)</th>
+                                    <th class="p-3 text-right">প্রাপ্ত সম্পদ</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                ${tableRows}
-                            </tbody>
+                            <tbody>${tableRows}</tbody>
                         </table>
                     </div>
-
-                    <div class="space-y-3">
-                        <h4 class="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5 pt-2">
-                            <i class="fa-solid fa-gavel text-emerald-600"></i> ফারায়েজ আইন অনুযায়ী হিসাবের ধাপসমূহ:
-                        </h4>
-                        <ul class="space-y-2.5">
-                            ${logItems}
-                        </ul>
+                    <div class="bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <h4 class="text-xs font-bold text-emerald-800 dark:text-emerald-400 mb-3 flex items-center gap-1"><i class="fa-solid fa-list-check"></i>  ধাপভিত্তিক আইনি ও শরিয়াহ হিসাবের অডিট ট্রেইল:</h4>
+                        <ul class="space-y-2 list-none pl-0">${logHtml}</ul>
                     </div>
-                </div>
-            `;
+                </div>`;
 
-            document.getElementById('chartFrame').classList.remove('hidden');
             document.getElementById('actionRow').classList.remove('hidden');
-
-            // থিম অনুসারে চার্টের লেখার রঙ ডাইনামিক নির্ধারণ
-            const isDark = document.documentElement.classList.contains('dark');
-            const chartTextColor = isDark ? '#94a3b8' : '#334155';
+            document.getElementById('chartFrame').classList.remove('hidden');
 
             if (currentChartInstance) currentChartInstance.destroy();
             const ctx = document.getElementById('faraidDoughnutChart').getContext('2d');
@@ -921,36 +788,49 @@
                     datasets: [{
                         data: distributionList.map(i => i.share),
                         backgroundColor: distributionList.map(i => i.color),
-                        borderWidth: 2,
-                        hoverOffset: 4
+                        borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    if (label) label += ': ';
-                                    if (context.parsed !== null) {
-                                        label += context.parsed.toFixed(1) + '% সম্পত্তি';
-                                    }
-                                    return label;
-                                }
-                            }
-                        },
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                color: chartTextColor,
-                                font: { size: 10, family: 'Noto Sans Bengali' },
-                                boxWidth: 10
-                            }
-                        }
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9, family: 'Noto Sans Bengali' } } }
                     }
                 }
             });
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            const icon = isDark ? "fa-solid fa-sun text-amber-300" : "fa-solid fa-moon text-amber-300";
+            
+            if(document.getElementById('themeIcon')) document.getElementById('themeIcon').className = icon;
+            if(document.getElementById('themeIconMobile')) document.getElementById('themeIconMobile').className = icon;
+            if(document.getElementById('themeText')) document.getElementById('themeText').innerText = isDark ? "লাইট মোড" : "ডার্ক মোড";
+        }
+
+        function resetForm() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            inputs.forEach(input => input.value = '');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            document.getElementById('landUnit').value = 'শতাংশ';
+            document.getElementById('faraidOutputContainer').innerHTML = `
+                <div class="text-center py-20 text-slate-400 dark:text-slate-600 space-y-3 print-hidden">
+                    <i class="fa-solid fa-file-invoice text-5xl"></i>
+                    <p class="text-sm font-medium">প্রয়োজনীয় ওয়ারিশ নির্বাচন করে হিসাব বাটনে ক্লিক করুন।</p>
+                </div>`;
+            document.getElementById('actionRow').classList.add('hidden');
+            document.getElementById('chartFrame').classList.add('hidden');
+            if (currentChartInstance) currentChartInstance.destroy();
+            updateNameFields();
+        }
+
+        function copyReportText() {
+            const container = document.getElementById('faraidOutputContainer');
+            navigator.clipboard.writeText(container.innerText);
+            alert('সম্পূর্ণ টেক্সট রিপোর্টটি সফলভাবে কপি হয়েছে!');
         }
     </script>
 </body>
